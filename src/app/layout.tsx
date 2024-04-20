@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Footer } from '@/widgets';
+import { Footer, Header } from '@/widgets';
 import { QueryProvider } from './_providers';
 
 export const metadata: Metadata = {
@@ -17,6 +17,7 @@ export default function RootLayout({
     <html lang="ko">
       <body className="w-full">
         <QueryProvider>
+          <Header />
           {children}
           <Footer />
         </QueryProvider>
