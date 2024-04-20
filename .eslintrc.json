@@ -22,7 +22,7 @@
     "node": true,
     "jest": true
   },
-  "ignorePatterns": [".eslintrc.js"],
+  "ignorePatterns": [".eslintrc.js", "next.config.js"],
   "rules": {
     "prettier/prettier": "error",
     "@typescript-eslint/interface-name-prefix": "off",
