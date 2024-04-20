@@ -15,7 +15,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <body>
+      <body className="w-full">
         <QueryProvider>
           {children}
           <Footer />
