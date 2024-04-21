@@ -6,7 +6,7 @@ export function Header() {
   return (
     <div>
       <LoginHeader />
-      <div className="w-80 h-20 relative cursor-pointer">
+      <div className="w-80 h-20 relative cursor-pointer m-2">
         <Link href={PATH.HOME}>
           <FullImage
             quality={100}
