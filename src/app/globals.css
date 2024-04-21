@@ -24,3 +24,13 @@ figure,
 figcaption {
   margin: 0;
 }
+
+body {
+  max-width: 1028px;
+}
+
+ul {
+  li {
+    list-style: none;
+  }
+}
