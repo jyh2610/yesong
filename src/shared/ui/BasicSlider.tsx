@@ -1,3 +1,5 @@
+'use client';
+
 import Slider from 'react-slick';
 import { FullImage } from './FullImage';
 
@@ -16,14 +18,12 @@ export function BasicSlider({ imageUrl }: Props) {
     autoplaySpeed: 2000
   };
   return (
-    <div className="slider-container">
-      <Slider {...settings}>
-        {imageUrl.map((url, idx) => (
-          <div key={idx}>
-            <FullImage src={url} altContent="슬라이더 이미지" />
-          </div>
-        ))}
-      </Slider>
-    </div>
+    <Slider {...settings}>
+      {imageUrl.map((url, idx) => (
+        <div key={idx}>
+          <FullImage src={url} altContent="슬라이더 이미지" />
+        </div>
+      ))}
+    </Slider>
   );
 }
