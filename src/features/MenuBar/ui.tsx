@@ -16,8 +16,9 @@ const menuLists = Object.keys(dropList);
 
 export function MenuBar() {
   const [clickedIndex, setClickedIndex] = useState<number | null>(null);
+  console.log(clickedIndex);
 
-  const handleClick = (index: number) => {
+  const handleClick = (index: number | null) => {
     setClickedIndex(index === clickedIndex ? null : index); // Toggle dropdown
   };
   return (
@@ -28,6 +29,7 @@ export function MenuBar() {
             key={menu}
             className="w-full h-full text-center cursor-pointer  hover:bg-pink-400"
             onClick={() => handleClick(index)}
+            onMouseLeave={() => handleClick(null)}
           >
             <p className="relative h-full flex items-center justify-center p-2">
               {menu}
