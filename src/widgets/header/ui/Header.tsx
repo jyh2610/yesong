@@ -4,7 +4,7 @@ import { FullImage, PATH } from '@/shared';
 
 export function Header() {
   return (
-    <div>
+    <div className="w-full">
       <LoginHeader />
       <div className="w-80 h-20 relative cursor-pointer m-2">
         <Link href={PATH.HOME}>

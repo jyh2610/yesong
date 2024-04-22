@@ -26,7 +26,7 @@ figcaption {
 }
 
 body {
-  max-width: 1028px;
+  min-width: 1028px;
 }
 
 ul {
