@@ -26,7 +26,7 @@ figcaption {
 }
 
 body {
-  min-width: 1028px;
+  box-sizing: border-box;
 }
 
 ul {
