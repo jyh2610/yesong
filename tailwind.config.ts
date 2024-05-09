@@ -16,6 +16,7 @@ const config: Config = {
         card2: '#FFFEF9',
         card3: '#FFFBF8',
         brand: '#FFF5FB',
+        newgray: '#777777',
         'brand-500': '#E33A9F'
       },
       backgroundImage: {

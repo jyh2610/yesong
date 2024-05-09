@@ -23,8 +23,8 @@ const cardData = [
 
 export function MainCard() {
   return (
-    <div className="mx-auto mt-32">
-      <div className="flex justify-between w-2/3 mx-auto gap-5 ">
+    <div className="mt-32">
+      <div className="flex justify-between mx-auto gap-5 ">
         {cardData.map(card => (
           <div
             key={card[1]}
@@ -34,7 +34,7 @@ export function MainCard() {
             className={`flex flex-col justify-center items-center gap-5 rounded-3xl px-7 py-8`}
           >
             <div className="w-32 h-32 relative">
-              <FullImage src={card[0]} altContent={''} />
+              <FullImage src={card[0]} altContent={'카드 이미지'} />
             </div>
             <div className="text-center">
               <p className="mb-4 font-normal text-2xl">{card[1]}</p>
