@@ -9,9 +9,12 @@ const config: Config = {
   theme: {
     extend: {
       fontSize: {
-        brandSize: '24px'
+        brandSize: '18px'
       },
       color: {
+        card1: '#FFFBFD',
+        card2: '#FFFEF9',
+        card3: '#FFFBF8',
         brand: '#FFF5FB',
         'brand-500': '#E33A9F'
       },

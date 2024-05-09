@@ -22,16 +22,16 @@ export function MenuBar() {
     setClickedIndex(index === clickedIndex ? null : index); // Toggle dropdown
   };
   return (
-    <div className="w-2/3 m-auto">
-      <ul className="h-12 flex items-center m-auto">
+    <div className="w-2/3 ml-auto">
+      <ul className="w-full h-12 flex justify-end items-center m-auto">
         {menuLists.map((menu, index) => (
           <li
             key={menu}
-            className="w-full h-full text-center text-2xl  p-2 font-medium cursor-pointer relative"
+            className="w-full h-full text-center text-2xl font-medium cursor-pointer relative"
             onClick={() => handleClick(index)}
             // onMouseLeave={() => handleClick(null)}
           >
-            <span className="whitespace-nowrap">{menu}</span>
+            <p className="w-full whitespace-nowrap">{menu}</p>
             {clickedIndex === index && <Dropdown data={dropList[menu]} />}
           </li>
         ))}

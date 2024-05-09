@@ -1,29 +1,24 @@
 'use client';
 
-import Slider from 'react-slick';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { FullImage } from './FullImage';
-
+import 'swiper/css';
 interface Props {
   imageUrl: string[];
 }
 export function BasicSlider({ imageUrl }: Props) {
-  const settings = {
-    fade: true,
-    infinite: true,
-    speed: 500,
-    slidesToShow: 1,
-    slidesToScroll: 1,
-    waitForAnimate: false,
-    autoplay: true,
-    autoplaySpeed: 2000
-  };
   return (
-    <Slider {...settings}>
+    <Swiper
+      style={{
+        width: '100%',
+        height: '595px'
+      }}
+    >
       {imageUrl.map((url, idx) => (
-        <div key={idx}>
+        <SwiperSlide className="w-full h-full " key={idx}>
           <FullImage src={url} altContent="슬라이더 이미지" />
-        </div>
+        </SwiperSlide>
       ))}
-    </Slider>
+    </Swiper>
   );
 }

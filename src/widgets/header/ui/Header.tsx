@@ -7,11 +7,11 @@ export function Header() {
     <div className="w-2/3 mx-auto">
       <LoginHeader />
       <div className="flex justify-center items-center p-2">
-        <div className="w-80 h-20 relative cursor-pointer m-2">
+        <div className="w-80 h-14 relative cursor-pointer m-2">
           <Link href={PATH.HOME}>
             <FullImage
               quality={100}
-              src={'http://xn--o39ap53a48clb577biqbqwgirt.com/img/logo.png'}
+              src="/assets/Logo.png"
               altContent={'메인로고'}
             />
           </Link>
