@@ -12,7 +12,7 @@ const dataList = [
 export function NoticeList() {
   const [isHover, setIsHover] = useState<number | null>(null);
   return (
-    <div className="w-3/5 p-2 ">
+    <div className="w-3/5 p-2">
       <ul className="h-full">
         {dataList.map((item, idx) => (
           <li key={idx} className="h-[70px] flex justify-between items-center">

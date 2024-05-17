@@ -1,9 +1,9 @@
-import { NoticeList } from '@/features';
 import { FullImage } from '@/shared';
+import { NoticeList } from './ui';
 
 export function Notice() {
   return (
-    <section className="mt-40">
+    <section className="mt-40 px-2">
       <p className=" text-5xl font-semibold">공지사항</p>
       <div className="flex justify-between gap-24">
         <NoticeList />

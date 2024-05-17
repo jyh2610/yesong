@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import './globals.css';
-import { Footer, Header } from '@/widgets';
+import { Footer, Header } from '@/entities';
 import { QueryProvider } from './_providers';
 
 export const metadata: Metadata = {

@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      boxShadow: {
+        customGaryShadow: '0px 0px 16px 0px #35042214'
+      },
       fontSize: {
         brandSize: '18px'
       },
@@ -17,6 +20,7 @@ const config: Config = {
         card3: '#FFFBF8',
         brand: '#FFF5FB',
         newgray: '#777777',
+        'custom-gray200': '#EFEFEF',
         'brand-500': '#E33A9F'
       },
       backgroundImage: {
