@@ -14,7 +14,7 @@ const config: Config = {
       fontSize: {
         brandSize: '18px'
       },
-      color: {
+      colors: {
         card1: '#FFFBFD',
         card2: '#FFFEF9',
         card3: '#FFFBF8',
