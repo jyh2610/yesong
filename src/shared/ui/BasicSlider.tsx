@@ -19,6 +19,9 @@ export function BasicSlider({
   isNavigation,
   slidesPerView
 }: Props) {
+  const formatLoopSrc =
+    imageUrl.length < 4 ? [...imageUrl, ...imageUrl] : imageUrl;
+
   return (
     <Swiper
       style={{
@@ -31,7 +34,7 @@ export function BasicSlider({
       loop={isNavigation ? true : false}
       spaceBetween={30}
     >
-      {imageUrl.map((url, idx) => (
+      {formatLoopSrc.map((url, idx) => (
         <SwiperSlide className="w-full h-full" key={idx}>
           <FullImage src={url} altContent="슬라이더 이미지" />
         </SwiperSlide>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BasicSlider } from '@/shared';
 
 const slideImg = [
@@ -13,7 +13,7 @@ export function Gallery() {
       <div className="max-w-[1360px] mx-auto">
         <p className=" text-5xl font-semibold  pb-10">갤러리</p>
         <BasicSlider
-          imageUrl={[...slideImg, ...slideImg]}
+          imageUrl={slideImg}
           height={'440px'}
           isNavigation={true}
           slidesPerView={3}

@@ -8,6 +8,9 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Pretendard', 'sans-serif']
+      },
       boxShadow: {
         customGaryShadow: '0px 0px 16px 0px #35042214'
       },
