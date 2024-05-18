@@ -7,5 +7,13 @@ interface Props {
 }
 
 export function FullImage({ src, altContent, quality }: Props) {
-  return <Image quality={quality} src={src} alt={altContent} fill={true} />;
+  return (
+    <Image
+      quality={quality}
+      src={src}
+      alt={altContent}
+      fill={true}
+      sizes="100%, 100%"
+    />
+  );
 }

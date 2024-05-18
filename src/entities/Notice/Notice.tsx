@@ -3,7 +3,7 @@ import { NoticeList } from './ui';
 
 export function Notice() {
   return (
-    <section className="mt-40 px-2">
+    <section className="mt-40 px-2 relative">
       <p className=" text-5xl font-semibold">공지사항</p>
       <div className="flex justify-between gap-24">
         <NoticeList />
