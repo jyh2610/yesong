@@ -1,4 +1,3 @@
-import { FullImage } from '@/shared';
 import { Card } from './ui/Card';
 
 const cardData = [

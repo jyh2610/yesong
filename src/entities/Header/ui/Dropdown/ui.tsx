@@ -8,10 +8,14 @@ const dropListValue = Object.values(dropList);
 
 export function Dropdown({ setIsOpen }: Props) {
   return (
-    <div className=" w-2/3 ml-auto bg-white z-10 ">
-      <ul className="flex justify-center items-start gap-1">
+    <div className="w-2/3 ml-auto bg-white z-10">
+      <ul className="flex w-full h-12 justify-between items-center m-auto px-5">
         {dropListValue.map((list, index) => (
-          <li key={index} className="w-full">
+          <li
+            key={index}
+            className="inline-block"
+            style={{ marginRight: '60px' }}
+          >
             {list.map(listItem => (
               <p
                 key={listItem}

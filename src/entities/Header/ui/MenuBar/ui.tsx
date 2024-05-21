@@ -17,15 +17,16 @@ export function MenuBar({ setIsOpen }: Props) {
 
   return (
     <div className="relative w-2/3 ml-auto cursor-pointer">
-      <ul className="w-full h-12 flex justify-center items-center m-auto gap-1">
+      <ul className="flex w-full h-12 justify-center items-center m-auto">
         {menuLists.map(menu => (
           <li
             key={menu}
-            className="w-full h-full text-center text-2xl font-medium cursor-pointer relative"
+            className="text-center text-2xl font-medium cursor-pointer relative inline-block"
+            style={{ marginRight: '60px' }}
           >
             <p
               onClick={handleClick}
-              className="w-full h-full flex justify-center text-center whitespace-nowrap"
+              className="flex justify-center text-center whitespace-nowrap"
             >
               {menu}
             </p>
