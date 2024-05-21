@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 
-function useDropDown() {
+export function useDropDown() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
+
   return { isOpen, setIsOpen };
 }
-
-export default useDropDown;

@@ -1,8 +1,12 @@
+'use client';
+
 import Link from 'next/link';
+import { useState } from 'react';
 import { FullImage, PATH } from '@/shared';
-import { LoginHeader, MenuBar } from './ui';
+import { Dropdown, LoginHeader, MenuBar } from './ui';
 
 export function Header() {
+  const [isOpen, setIsOpen] = useState(false);
   return (
     <div className="w-2/3 mx-auto">
       <LoginHeader />
@@ -12,8 +16,9 @@ export function Header() {
             <FullImage src="/assets/Logo.png" altContent={'메인로고'} />
           </div>
         </Link>
-        <MenuBar />
+        <MenuBar setIsOpen={setIsOpen} />
       </div>
+      {isOpen && <Dropdown setIsOpen={setIsOpen} />}
     </div>
   );
 }

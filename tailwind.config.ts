@@ -24,6 +24,7 @@ const config: Config = {
         brand: '#FFF5FB',
         newgray: '#777777',
         'custom-gray200': '#EFEFEF',
+        'brand-400': '#ED52AF',
         'brand-500': '#E33A9F'
       },
       backgroundImage: {
