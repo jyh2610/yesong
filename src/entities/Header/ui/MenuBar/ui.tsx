@@ -22,7 +22,7 @@ export function MenuBar({ setIsOpen }: Props) {
           <li
             key={menu}
             className="text-center text-2xl font-medium cursor-pointer relative inline-block"
-            style={{ marginRight: '60px' }}
+            style={{ paddingRight: '60px' }}
           >
             <p
               onClick={handleClick}
