@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { FaArrowRight } from 'react-icons/fa6';
 
 const dataList = [
   '2024 방문목요 급여수가 및 본인부담금',
@@ -13,11 +14,20 @@ export function NoticeList() {
   const [isHover, setIsHover] = useState<number | null>(null);
   return (
     <div className="w-3/5 p-2">
-      <ul className="h-full">
+      <ul className="h-full cursor-pointer">
         {dataList.map((item, idx) => (
-          <li key={idx} className="h-[70px] flex justify-between items-center">
+          <li
+            key={idx}
+            onMouseEnter={() => setIsHover(idx)}
+            onMouseLeave={() => setIsHover(null)}
+            className="h-[70px] flex justify-between items-center hover:border-b-2 border-brand-500"
+          >
             <p className="font-medium text-2xl">{item}</p>
-            <p className="font-normal text-lg text-[#777777]">2024-01-02</p>
+            {isHover !== idx ? (
+              <p className="font-normal text-lg text-[#777777]">2024-01-02</p>
+            ) : (
+              <FaArrowRight size={36} color="#E33A9F" />
+            )}
           </li>
         ))}
       </ul>
