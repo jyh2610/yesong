@@ -7,3 +7,4 @@ export { Header } from './Header/Header';
 export { Notice } from './Notice/Notice';
 export { Redirect } from './Redirect/Redirect';
 export { Gallery } from './Gallery/Gallery';
+export { KakaoMap } from './KakaoMap/KakaoMap';

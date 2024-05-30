@@ -1,3 +1,9 @@
+import { KakaoMap } from '@/entities';
+
 export function CenterInfo() {
-  return <div></div>;
+  return (
+    <div>
+      <KakaoMap />
+    </div>
+  );
 }

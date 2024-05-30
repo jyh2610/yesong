@@ -1,12 +1,12 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
+import Script from 'next/script';
 import { Footer, Header } from '@/entities';
 import { QueryProvider } from './_providers';
 
 const pretendard = localFont({
   src: '../../public/assets/font/PretendardVariable.ttf',
-  display: 'swap',
   weight: '45 920',
   variable: '--font-pretendard'
 });
@@ -22,6 +22,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <Script
+        type="text/javascript"
+        src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&autoload=false`}
+      />
       <body className={`w-full ${pretendard.variable} font-pretendard`}>
         <QueryProvider>
           <Header />
