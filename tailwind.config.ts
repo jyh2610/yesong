@@ -24,8 +24,11 @@ const config: Config = {
         brand: '#FFF5FB',
         newgray: '#777777',
         'custom-gray200': '#EFEFEF',
+        'brand-200': '#FA98D3',
+        'brand-300': '#F571C0',
         'brand-400': '#ED52AF',
-        'brand-500': '#E33A9F'
+        'brand-500': '#E33A9F',
+        'brand-600': '#D52990'
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',

@@ -14,13 +14,13 @@ export function NoticeList() {
   const [isHover, setIsHover] = useState<number | null>(null);
   return (
     <div className="w-3/5 p-2">
-      <ul className="h-full cursor-pointer">
+      <ul className="h-full gap-1 cursor-pointer">
         {dataList.map((item, idx) => (
           <li
             key={idx}
             onMouseEnter={() => setIsHover(idx)}
             onMouseLeave={() => setIsHover(null)}
-            className="h-[70px] flex justify-between items-center hover:border-b-2 border-brand-500"
+            className="h-[70px] flex justify-between items-center border-b-2 border-transparent hover:border-b-2 hover:border-brand-500"
           >
             <p className="font-medium text-2xl">{item}</p>
             {isHover !== idx ? (
