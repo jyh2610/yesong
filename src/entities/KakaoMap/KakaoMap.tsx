@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useEffect, useRef } from 'react';
+import { lat, lng } from './contant';
 
 declare global {
   interface Window {
@@ -19,9 +20,6 @@ const loadKakaoMapScript = () => {
     document.body.appendChild(script);
   });
 };
-
-const lat = '37.448920542046';
-const lng = '127.145277085961';
 
 export function KakaoMap() {
   const map = useRef<unknown>(null);

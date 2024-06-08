@@ -26,7 +26,7 @@ export default function RootLayout({
         type="text/javascript"
         src={`//dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&autoload=false`}
       />
-      <body className={`w-full ${pretendard.variable} font-pretendard`}>
+      <body className={`w-full ${pretendard.variable} font-pretendard `}>
         <QueryProvider>
           <Header />
           {children}

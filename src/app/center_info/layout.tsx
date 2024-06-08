@@ -7,12 +7,9 @@ function layout({ children }: { children: ReactNode }) {
       <div className="relative w-full h-52">
         <FullImage src={'/assets/SideBanner.png'} altContent="" />
       </div>
-      <div className="max-w-[1360px] mx-auto mt-20 flex gap-28">
+      <div className="max-w-[1360px] mx-auto mt-16 flex gap-28">
         <SideMenu />
-        <div className="w-2/3">
-          <p className="font-semibold text-5xl">오시는길</p>
-          {children}
-        </div>
+        <div className="w-2/3">{children}</div>
       </div>
     </div>
   );

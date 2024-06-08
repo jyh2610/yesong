@@ -1,8 +1,19 @@
-import React from 'react';
+'use client';
+
+import { usePathname } from 'next/navigation';
 import { FaLocationDot } from 'react-icons/fa6';
 import { IoMdCall } from 'react-icons/io';
+import { dropList, pathMapping } from '@/entities/Header/constant';
 
 export function SideMenu() {
+  const pathname = usePathname();
+  const firstEndpoint = pathname.split('/')[1];
+  console.log(firstEndpoint);
+
+  const currentKey = Object.keys(pathMapping).find(
+    key => pathMapping[key] === pathname
+  );
+
   return (
     <div className="w-1/3 font-medium text-2x text-gray-700 ">
       <p className=" pb-3 border-b-2 border-brand-200 text-gray-800">
@@ -25,11 +36,11 @@ const Info = () => {
       </div>
       <div className="flex gap-2 mt-5">
         <IoMdCall size={24} color="#FA98D3" />
-        <p className="text-brand-600">010-5763-7901</p>
+        <p className="text-brand-600">010-6219-3680</p>
       </div>
       <div className="flex gap-2 mt-3">
         <FaLocationDot size={24} color="#FA98D3" />
-        <p>경기도 성남시 수정구 복정로 16번길 11, 103호</p>
+        <p>경기도 성남시 수정구 남문로13번길 17, 102호</p>
       </div>
     </div>
   );
