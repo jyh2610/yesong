@@ -5,7 +5,8 @@ export const dropList: DropList = {
   노인장기요양보험안내: ['노인장기요양보험안내'],
   이용안내: ['방문요양'],
   커뮤니티: ['공지사항', '상담신청'],
-  자료실: ['건강정보', '교육자료']
+  자료실: ['건강정보', '교육자료'],
+  갤러리: ['갤러리']
 };
 
 export interface IPathMapping {
@@ -50,6 +51,12 @@ export const pathMapping: { [key: string]: IPathMapping } = {
     children: {
       건강정보: '/health_info',
       교육자료: '/education_material'
+    }
+  },
+  갤러리: {
+    path: '/gallery',
+    children: {
+      갤러리: ''
     }
   }
 };
