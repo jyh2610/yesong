@@ -46,7 +46,7 @@ export const pathMapping: { [key: string]: IPathMapping } = {
     }
   },
   자료실: {
-    path: '/resources',
+    path: '/data_lab',
     children: {
       건강정보: '/health_info',
       교육자료: '/education_material'

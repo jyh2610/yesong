@@ -1,6 +1,6 @@
 import { DashBoard } from '@/entities';
 
-function Notice() {
+function EducationMaterial() {
   return (
     <div>
       <DashBoard />
@@ -8,4 +8,4 @@ function Notice() {
   );
 }
 
-export default Notice;
+export default EducationMaterial;
