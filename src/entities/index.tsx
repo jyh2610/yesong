@@ -8,3 +8,4 @@ export { Notice } from './Notice/Notice';
 export { Redirect } from './Redirect/Redirect';
 export { Gallery } from './Gallery/Gallery';
 export { KakaoMap } from './KakaoMap/KakaoMap';
+export { DashBoard } from './DashBoard/DashBoard';

@@ -1,26 +1,74 @@
 'use client';
 
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { IoMdCall } from 'react-icons/io';
-import { dropList, pathMapping } from '@/entities/Header/constant';
+import { pathMapping, IPathMapping } from '@/entities/Header/constant';
+import { renderSubMenu } from './RenderSubMenu';
 
 export function SideMenu() {
-  const pathname = usePathname();
-  const firstEndpoint = pathname.split('/')[1];
-  console.log(firstEndpoint);
+  const [activeMenuKey, setActiveMenuKey] = useState<string>('');
 
-  const currentKey = Object.keys(pathMapping).find(
-    key => pathMapping[key] === pathname
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const segments = pathname.split('/');
+  const parentPath = `/${segments[2]}`; // '/center_info' part
+  const lastSegment = segments[segments.length - 1]; // 'way_to_come' part
+
+  useEffect(() => {
+    const currentMenu = Object.entries(pathMapping).find(
+      ([, value]) => value.path === parentPath
+    );
+
+    if (currentMenu && currentMenu[1].children) {
+      const foundKey =
+        Object.entries(currentMenu[1].children).find(
+          ([, value]) => value === `/sub_page/${lastSegment}`
+        )?.[0] || '';
+      setActiveMenuKey(foundKey || currentMenu[0]);
+    }
+  }, [parentPath, lastSegment]);
+
+  const currentMenu = Object.entries(pathMapping).find(
+    ([, value]) => value.path === parentPath
   );
+
+  const menuList =
+    currentMenu && currentMenu[1].children
+      ? Object.keys(currentMenu[1].children)
+      : [];
+
+  const generatePath = (menu: string) => {
+    const child = currentMenu && currentMenu[1].children[menu];
+    if (typeof child === 'string') {
+      return parentPath + child;
+    } else if (typeof child === 'object' && 'path' in child) {
+      return parentPath + child.path;
+    }
+    return parentPath;
+  };
 
   return (
     <div className="w-1/3 font-medium text-2x text-gray-700 ">
-      <p className=" pb-3 border-b-2 border-brand-200 text-gray-800">
-        센터소개
+      <p className="pb-3 border-b-2 border-brand-200 text-gray-800">
+        {currentMenu?.[0]}
       </p>
-      <p className="py-5">인삿말</p>
-      <p>오시는길</p>
+      {menuList.map((menu, index) => {
+        const child = currentMenu?.[1].children[menu];
+        return (
+          <div key={index}>
+            <p
+              className={`py-2 cursor-pointer ${menu === activeMenuKey ? 'text-brand-600' : 'text-font-gray'}`}
+              onClick={() => router.push(generatePath(menu))}
+            >
+              {menu}
+            </p>
+            {child && renderSubMenu(parentPath, activeMenuKey, menu, child)}
+          </div>
+        );
+      })}
       <Info />
     </div>
   );
@@ -31,7 +79,7 @@ const Info = () => {
     <div className="p-5 bg-brand border border-brand-300 rounded-2xl text-gray-700 mt-14">
       <div className="text-center">
         <p className="text-gray-800">고객센터</p>
-        <p className=" mt-2">언제든지 전화주시면 정성껏</p>
+        <p className="mt-2">언제든지 전화주시면 정성껏</p>
         <p>답변드리겠습니다.</p>
       </div>
       <div className="flex gap-2 mt-5">

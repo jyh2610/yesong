@@ -23,6 +23,7 @@ const config: Config = {
         card3: '#FFFBF8',
         brand: '#FFF5FB',
         newgray: '#777777',
+        'font-gray': '#636363',
         'custom-gray200': '#EFEFEF',
         'brand-200': '#FA98D3',
         'brand-300': '#F571C0',
