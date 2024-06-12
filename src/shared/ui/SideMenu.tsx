@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { IoMdCall } from 'react-icons/io';
 import { pathMapping, IPathMapping } from '@/entities/Header/constant';
-import { renderSubMenu } from './RenderSubMenu';
+import { RenderSubMenu } from './RenderSubMenu';
 
 export function SideMenu() {
   const [activeMenuKey, setActiveMenuKey] = useState<string>('');
@@ -14,8 +14,8 @@ export function SideMenu() {
   const pathname = usePathname();
 
   const segments = pathname.split('/');
-  const parentPath = `/${segments[2]}`; // '/center_info' part
-  const lastSegment = segments[segments.length - 1]; // 'way_to_come' part
+  const parentPath = `/${segments[2]}`;
+  const lastSegment = segments[segments.length - 1];
 
   useEffect(() => {
     const currentMenu = Object.entries(pathMapping).find(
@@ -43,11 +43,13 @@ export function SideMenu() {
   const generatePath = (menu: string) => {
     const child = currentMenu && currentMenu[1].children[menu];
     if (typeof child === 'string') {
-      return parentPath + child;
-    } else if (typeof child === 'object' && 'path' in child) {
-      return parentPath + child.path;
+      return '/sub_page' + parentPath + child;
     }
-    return parentPath;
+    if (typeof child === 'object' && 'path' in child) {
+      console.log(parentPath, child.path);
+      return '/sub_page' + parentPath + child.path;
+    }
+    return '/sub_page' + parentPath;
   };
 
   return (
@@ -65,7 +67,15 @@ export function SideMenu() {
             >
               {menu}
             </p>
-            {child && renderSubMenu(parentPath, activeMenuKey, menu, child)}
+            {child && (
+              <RenderSubMenu
+                parentPath={parentPath}
+                lastSegment={lastSegment}
+                activeMenuKey={activeMenuKey}
+                menu={menu}
+                child={child}
+              />
+            )}
           </div>
         );
       })}

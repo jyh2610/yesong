@@ -1,13 +1,12 @@
 import { useRouter } from 'next/navigation';
 import { getFullPath } from '@/shared';
-import { dropList, pathMapping } from '../../constant';
+import { dropList, pathMapping, IPathMapping } from '../../constant';
 
 interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const dropListValue = Object.entries(dropList);
-
 export function Dropdown({ setIsOpen }: Props) {
   const router = useRouter();
 
@@ -15,7 +14,8 @@ export function Dropdown({ setIsOpen }: Props) {
     setIsOpen(false);
     const parentPath = pathMapping[parentKey]?.path;
     const child = pathMapping[parentKey]?.children?.[childKey];
-    const fullPath = getFullPath(parentPath, child, childKey);
+
+    const fullPath = getFullPath(parentPath, child);
 
     router.push(fullPath);
   };

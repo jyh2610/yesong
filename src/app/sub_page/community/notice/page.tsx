@@ -2,9 +2,10 @@ import { DashBoard } from '@/entities';
 
 function Notice() {
   return (
-    <div>
+    <>
+      <p className="font-semibold text-5xl">공지사항</p>
       <DashBoard />
-    </div>
+    </>
   );
 }
 

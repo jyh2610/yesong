@@ -6,7 +6,6 @@ import { FullImage } from '@/shared';
 
 export function Card({ card }: { card: string[] }) {
   const [isHovered, setIsHovered] = useState<boolean>(false);
-  console.log(card);
 
   return (
     <div

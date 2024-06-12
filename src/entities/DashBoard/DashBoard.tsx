@@ -1,77 +1,73 @@
 'use client';
 
-import { Divider, Radio, Table } from 'antd';
-import type { TableColumnsType } from 'antd';
-
-interface DataType {
-  key: React.Key;
-  number: string;
-  title: string;
-  writer: string;
-  date: string;
-  count: number;
-}
-
-const columns: TableColumnsType<DataType> = [
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+  getKeyValue
+} from '@nextui-org/react';
+const rows = [
   {
-    title: '번호',
-    dataIndex: 'number',
-    render: (text: string) => <a>{text}</a>
+    number: 1,
+    title: 'titles',
+    writer: 'yesong',
+    date: '2024-01-01',
+    count: 24
   },
   {
-    title: '제목',
-    dataIndex: 'title'
-  },
-  {
-    title: '글쓴이',
-    dataIndex: 'writer'
-  },
-  {
-    title: '날짜',
-    dataIndex: 'date'
-  },
-  {
-    title: '조회',
-    dataIndex: 'count'
+    number: 2,
+    title: 't222itles123123123123',
+    writer: 'yes22ong',
+    date: '2024-01-01',
+    count: 2422
   }
 ];
 
-const data: DataType[] = [
+const columns = [
   {
-    key: '1',
-    number: '1',
-    title: 'John Brown',
-    writer: 'John Brown',
-    date: '2023-01-01',
-    count: 32
+    key: 'number',
+    label: '번호'
+  },
+  {
+    key: 'title',
+    label: '제목'
+  },
+  {
+    key: 'writer',
+    label: '글쓴이'
+  },
+  {
+    key: 'date',
+    label: '날짜'
+  },
+  {
+    key: 'count',
+    label: '조회'
   }
 ];
-
-const rowSelection = {
-  onChange: (selectedRowKeys: React.Key[], selectedRows: DataType[]) => {
-    console.log(
-      `selectedRowKeys: ${selectedRowKeys}`,
-      'selectedRows: ',
-      selectedRows
-    );
-  },
-  getCheckboxProps: (record: DataType) => ({
-    disabled: record.number === 'Disabled User', // Column configuration not to be checked
-    name: record.number
-  })
-};
-
 export function DashBoard() {
   return (
-    <div>
+    <div className="flex flex-col gap-3">
       <Table
-        rowSelection={{
-          type: 'checkbox',
-          ...rowSelection
-        }}
-        columns={columns}
-        dataSource={data}
-      />
+        selectionMode="single"
+        aria-label="Example static collection table"
+      >
+        <TableHeader columns={columns}>
+          {column => <TableColumn key={column.key}>{column.label}</TableColumn>}
+        </TableHeader>
+        <TableBody items={rows}>
+          {item => (
+            <TableRow key={item.number} className="cursor-pointer">
+              {columnKey => (
+                <TableCell>{getKeyValue(item, columnKey)}</TableCell>
+              )}
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
     </div>
   );
 }

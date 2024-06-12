@@ -3,7 +3,7 @@ import './globals.css';
 import localFont from 'next/font/local';
 import Script from 'next/script';
 import { Footer, Header } from '@/entities';
-import { QueryProvider } from './_providers';
+import { NextUiProvider, QueryProvider } from './_providers';
 
 const pretendard = localFont({
   src: '../../public/assets/font/PretendardVariable.ttf',
@@ -28,9 +28,11 @@ export default function RootLayout({
       />
       <body className={`w-full ${pretendard.variable} font-pretendard `}>
         <QueryProvider>
-          <Header />
-          {children}
-          <Footer />
+          <NextUiProvider>
+            <Header />
+            {children}
+            <Footer />
+          </NextUiProvider>
         </QueryProvider>
       </body>
     </html>

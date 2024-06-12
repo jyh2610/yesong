@@ -2,9 +2,10 @@ import { DashBoard } from '@/entities';
 
 function CounselRequest() {
   return (
-    <div>
+    <>
+      <p className="font-semibold text-5xl">상담신청</p>
       <DashBoard />
-    </div>
+    </>
   );
 }
 

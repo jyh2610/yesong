@@ -31,10 +31,10 @@ export const pathMapping: { [key: string]: IPathMapping } = {
     path: '/usage_info',
     children: {
       방문요양: {
-        path: '/visit_care/care_info',
+        path: '/visit_care',
         children: {
-          '방문요양 서비스 내용 제공': '/visit_care/care_info',
-          '월 한도액 및 본인부담금 안내': '/visit_care/price_info'
+          '방문요양 서비스 내용 제공': '/care_info',
+          '월 한도액 및 본인부담금 안내': '/price_info'
         }
       }
     }
