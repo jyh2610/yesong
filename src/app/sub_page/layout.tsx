@@ -3,7 +3,7 @@ import { FullImage, SideMenu } from '@/shared';
 
 function layout({ children }: { children: ReactNode }) {
   return (
-    <div>
+    <div className="pb-40">
       <div className="relative w-full h-52">
         <FullImage src={'/assets/SideBanner.png'} altContent="" />
       </div>
