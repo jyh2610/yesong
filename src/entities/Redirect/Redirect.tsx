@@ -1,4 +1,3 @@
-import React from 'react';
 import { list } from './constant/index';
 import { RedirectList } from './ui/RedirectList';
 

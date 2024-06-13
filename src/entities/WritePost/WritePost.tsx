@@ -1,6 +1,6 @@
+import { Checkbox } from '@nextui-org/checkbox';
 import { ListWithTitle } from './ui/ListWithTitle';
 import { ReactQuillEditor } from './ui/ReactQuillEditor';
-import { Checkbox } from '@nextui-org/checkbox';
 
 export function WritePost() {
   return (
