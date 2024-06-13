@@ -10,3 +10,4 @@ export { Gallery } from './Gallery/Gallery';
 export { KakaoMap } from './KakaoMap/KakaoMap';
 export { DashBoard } from './DashBoard/DashBoard';
 export { WritePost } from './WritePost/WritePost';
+export { LoginModal } from './LoginModal/LoginModal';

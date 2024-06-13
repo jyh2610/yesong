@@ -1,8 +1,7 @@
 import { Gallery, MainCard, Notice, Redirect } from '@/entities';
 import { BasicSlider } from '@/shared';
-import { mainSlide } from '@/shared/constant/imageSrc';
 
-const bannerImg = ['/assets/Banner.png', '/assets/hand-4752642_1280.jpg'];
+const bannerImg = ['/assets/Banner.webp', '/assets/hand-4752642_1280.jpg'];
 
 export function MainPage() {
   return (
