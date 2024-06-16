@@ -13,22 +13,54 @@ import {
   Link
 } from '@nextui-org/react';
 import { useState } from 'react';
+import { useToast } from '@/app/_providers/ToastProvider';
+import { tokenController } from '@/shared';
 import { postLoginData } from './api';
 
 export function LoginModal() {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const { showToast } = useToast();
+
+  const accessToken = tokenController.getAccessToken();
 
   const postLoginUserData = async (onClose: () => void) => {
-    await postLoginData({ id, password });
-    onClose();
+    try {
+      const res = await postLoginData({ id, password });
+      const { accessToken, refreshToken } = res;
+
+      tokenController.setTokens({ accessToken, refreshToken });
+      setId('');
+      setPassword('');
+      onClose();
+      showToast({
+        type: 'success',
+        message: '로그인에 성공하였습니다.'
+      });
+    } catch {
+      showToast({
+        type: 'fail',
+        message: '아이디 또는 비밀번호가 틀렸습니다.'
+      });
+    }
+  };
+
+  const handleLogout = () => {
+    tokenController.clearTokens();
+    showToast({
+      type: 'success',
+      message: '로그아웃 되었습니다.'
+    });
   };
 
   return (
     <>
-      <span onClick={onOpen} className=" text-brandSize font-medium">
-        관리자
+      <span
+        onClick={accessToken ? handleLogout : onOpen}
+        className="text-brandSize font-medium"
+      >
+        {!accessToken ? '관리자' : '로그아웃'}
       </span>
       <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
         <ModalContent>
@@ -52,19 +84,6 @@ export function LoginModal() {
                   type="password"
                   variant="bordered"
                 />
-                {/* 개인정보찾기 */}
-                {/* <div className="flex py-2 px-1 justify-between">
-                  <Checkbox
-                    classNames={{
-                      label: 'text-small'
-                    }}
-                  >
-                    Remember me
-                  </Checkbox>
-                  <Link color="primary" href="#" size="sm">
-                    Forgot password?
-                  </Link>
-                </div> */}
               </ModalBody>
               <ModalFooter>
                 <Button color="danger" variant="flat" onPress={onClose}>
@@ -72,7 +91,9 @@ export function LoginModal() {
                 </Button>
                 <Button
                   color="primary"
-                  onClick={() => postLoginUserData(onClose)}
+                  onClick={() => {
+                    postLoginUserData(onClose);
+                  }}
                 >
                   로그인
                 </Button>

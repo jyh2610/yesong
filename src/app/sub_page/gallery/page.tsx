@@ -1,7 +1,12 @@
 import React from 'react';
+import { GalleryPage } from '@/entities';
 
 function Gallery() {
-  return <div>Gallery</div>;
+  return (
+    <>
+      <GalleryPage />
+    </>
+  );
 }
 
 export default Gallery;

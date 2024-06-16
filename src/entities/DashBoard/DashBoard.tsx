@@ -10,7 +10,8 @@ import {
   getKeyValue,
   Pagination
 } from '@nextui-org/react';
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
+import { getPosts } from './api';
 import { rows, columns } from './constant';
 import AdminButton from './ui/AdminButton';
 
@@ -27,6 +28,10 @@ export function DashBoard() {
 
     return rows.slice(start, end);
   }, [page]);
+
+  // useEffect(() => {
+  //   getPosts();
+  // }, []);
 
   return (
     <div className="mt-10 flex flex-col gap-3">

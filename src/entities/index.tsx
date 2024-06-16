@@ -11,3 +11,5 @@ export { KakaoMap } from './KakaoMap/KakaoMap';
 export { DashBoard } from './DashBoard/DashBoard';
 export { WritePost } from './WritePost/WritePost';
 export { LoginModal } from './LoginModal/LoginModal';
+export { Toast } from './Toast/Toast';
+export { GalleryPage } from './GalleryPage/GalleryPage';

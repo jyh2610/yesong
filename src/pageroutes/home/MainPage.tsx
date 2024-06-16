@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect } from 'react';
 import { Gallery, MainCard, Notice, Redirect } from '@/entities';
 import { BasicSlider } from '@/shared';
 
