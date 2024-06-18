@@ -12,7 +12,7 @@ import {
   Input,
   Link
 } from '@nextui-org/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useToast } from '@/app/_providers/ToastProvider';
 import { tokenController } from '@/shared';
 import { postLoginData } from './api';
@@ -22,8 +22,12 @@ export function LoginModal() {
   const [id, setId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const { showToast } = useToast();
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean | null>(null); // Initialize to null
 
-  const accessToken = tokenController.getAccessToken();
+  useEffect(() => {
+    const accessToken = tokenController.getAccessToken();
+    setIsLoggedIn(!!accessToken);
+  }, []);
 
   const postLoginUserData = async (onClose: () => void) => {
     try {
@@ -33,6 +37,7 @@ export function LoginModal() {
       tokenController.setTokens({ accessToken, refreshToken });
       setId('');
       setPassword('');
+      setIsLoggedIn(true);
       onClose();
       showToast({
         type: 'success',
@@ -48,21 +53,33 @@ export function LoginModal() {
 
   const handleLogout = () => {
     tokenController.clearTokens();
+    setIsLoggedIn(false); // Update login state
     showToast({
       type: 'success',
       message: '로그아웃 되었습니다.'
     });
   };
 
+  if (isLoggedIn === null) {
+    return null;
+  }
+
+  const currentLoginState = isLoggedIn ? '로그아웃' : '관리자';
+
   return (
     <>
       <span
-        onClick={accessToken ? handleLogout : onOpen}
+        onClick={isLoggedIn ? handleLogout : onOpen}
         className="text-brandSize font-medium"
       >
-        {!accessToken ? '관리자' : '로그아웃'}
+        {currentLoginState}
       </span>
-      <Modal isOpen={isOpen} onOpenChange={onOpenChange} placement="top-center">
+      <Modal
+        aria-label="login modal"
+        isOpen={isOpen}
+        onOpenChange={onOpenChange}
+        placement="top-center"
+      >
         <ModalContent>
           {onClose => (
             <>

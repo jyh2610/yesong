@@ -12,6 +12,8 @@ export { companyInfo } from './constant/companyInfo';
 //utils
 export { getFullPath } from './utils/getFullPath';
 export { tokenController } from './utils/tokenController';
+export { generateFormData } from './utils/generateFormdata';
 
 //type
 export type { IPostRes } from './types/login';
+export type { IGetPost } from './types/posts';

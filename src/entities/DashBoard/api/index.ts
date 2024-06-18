@@ -1,3 +1,6 @@
+import { UseQueryResult, useQuery } from '@tanstack/react-query';
+import { AxiosRequestHeaders } from 'axios';
+import { IGetPost } from '@/shared';
 import request from '@/shared/APIs';
 
 export const getPosts = async ({
@@ -7,7 +10,7 @@ export const getPosts = async ({
   page: number;
   category: string;
 }) => {
-  const res = await request({
+  const res = await request<IGetPost[]>({
     method: 'GET',
     url: `/api/posts/category/${category}`,
     params: {
@@ -17,4 +20,17 @@ export const getPosts = async ({
   });
 
   return res.data;
+};
+
+export const useGetPosts = ({
+  page,
+  category
+}: {
+  page: number;
+  category: string;
+}): UseQueryResult<IGetPost[], Error> => {
+  return useQuery<IGetPost[], Error>({
+    queryKey: ['postList', page, category],
+    queryFn: () => getPosts({ page, category })
+  });
 };

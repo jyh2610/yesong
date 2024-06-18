@@ -8,7 +8,12 @@ interface Props {
 
 export function Toast({ text, type, visible }: Props) {
   return (
-    <Modal isOpen={visible} placement="bottom" backdrop="transparent">
+    <Modal
+      aria-label="toast modal"
+      isOpen={visible}
+      placement="bottom"
+      backdrop="transparent"
+    >
       <ModalContent>
         <>
           <ModalBody>

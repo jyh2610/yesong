@@ -1,4 +1,5 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
+import { tokenController } from '../utils/tokenController';
 
 export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || '';
 
@@ -10,6 +11,15 @@ if (!BASE_URL) {
 
 const axiosInstance = axios.create({ baseURL: BASE_URL });
 
+axiosInstance.interceptors.request.use(async config => {
+  const token = tokenController.getAccessToken();
+  if (token) {
+    config.headers['Authorization'] = `Bearer ${token}`;
+  }
+
+  console.log('Request Headers:', config.headers);
+  return config;
+});
 export interface ErrorResponse {
   statusCode: number;
   message: string;
