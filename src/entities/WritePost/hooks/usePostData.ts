@@ -4,7 +4,7 @@ import { useToast } from '@/app/_providers/ToastProvider';
 import { postDashBoard } from '../api';
 import { IPostData } from '../type';
 
-const initialData: IPostData = {
+export const initialData: IPostData = {
   title: '',
   content: '',
   category: 'COMMUNITY_NOTICE',

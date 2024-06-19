@@ -1,15 +1,16 @@
 'use client';
 import { Checkbox } from '@nextui-org/checkbox';
-import { usePostData } from './hooks/usePostData';
+import { Button } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+import { initialData, usePostData } from './hooks/usePostData';
 import { ListWithTitle } from './ui/ListWithTitle';
 import { ReactQuillEditor } from './ui/ReactQuillEditor';
 
 export function WritePost() {
   const { postData, setPostData, postDashBoardHandler } = usePostData();
-
+  const route = useRouter();
   return (
     <>
-      <button>뒤로가기</button>
       <ul className="w-full">
         <ListWithTitle title="옵션">
           <Checkbox>공지</Checkbox>
@@ -17,6 +18,7 @@ export function WritePost() {
         <ListWithTitle title="제목">
           <input
             value={postData.title}
+            className="bg-gray-100 w-full p-1"
             onChange={e =>
               setPostData(prev => ({
                 ...prev,
@@ -66,8 +68,21 @@ export function WritePost() {
         <ListWithTitle title="파일 #2">
           <input type="file" placeholder="파일을 선택하세요." />
         </ListWithTitle>
-        <button onClick={postDashBoardHandler}>등록하기</button>
       </ul>
+      <div className="w-full mt-4 flex justify-end gap-2">
+        <Button
+          color="danger"
+          onClick={() => {
+            route.back();
+            setPostData(initialData);
+          }}
+        >
+          취소하기
+        </Button>
+        <Button color="success" onClick={postDashBoardHandler}>
+          등록하기
+        </Button>
+      </div>
     </>
   );
 }
