@@ -23,7 +23,6 @@ export const RenderSubMenu = ({
       <div className="pl-4">
         {Object.entries(child.children).map(([subMenu, subPath]) => {
           const fullPath = `/sub_page/${parentPath}${subPath}`;
-          console.log(fullPath);
           return (
             <p
               key={subMenu}

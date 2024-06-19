@@ -18,7 +18,6 @@ export const getPosts = async ({
       size: 8
     }
   });
-  console.log(res);
 
   return res.data;
 };

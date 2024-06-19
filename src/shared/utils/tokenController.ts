@@ -1,4 +1,3 @@
-// lib/TokenController.js
 import { setCookie, getCookie, deleteCookie } from 'cookies-next';
 
 interface IToken {

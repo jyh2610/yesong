@@ -11,6 +11,7 @@ import {
 } from '@nextui-org/react';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState } from 'react';
+import { tokenController } from '@/shared';
 import { columns, menuMapping } from './constant';
 import { useParsingData } from './model/useParsingData';
 import AdminButton from './ui/AdminButton';
@@ -34,7 +35,7 @@ export function DashBoard() {
 
   return (
     <div className="mt-10 flex flex-col gap-3">
-      <AdminButton />
+      {tokenController.getAccessToken() !== undefined && <AdminButton />}
       <Table
         aria-label="table"
         selectionMode="multiple"

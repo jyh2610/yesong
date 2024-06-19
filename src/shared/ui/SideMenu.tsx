@@ -46,7 +46,6 @@ export function SideMenu() {
       return '/sub_page' + parentPath + child;
     }
     if (typeof child === 'object' && 'path' in child) {
-      console.log(parentPath, child.path);
       return '/sub_page' + parentPath + child.path;
     }
     return '/sub_page' + parentPath;
