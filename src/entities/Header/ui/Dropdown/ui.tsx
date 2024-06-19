@@ -30,7 +30,7 @@ export function Dropdown({ setIsOpen }: Props) {
             {dropListValue.map(([parentKey, list], index) => (
               <li
                 key={index}
-                className="w-[125px] h-full text-font-gray hover:text-brand-400 text-xl font-medium cursor-pointer flex items-center justify-end flex-col text-end"
+                className="w-[125px] h-full text-font-gray hover:text-brand-400 text-xl font-medium cursor-pointer flex items-center justify-center flex-col text-end"
               >
                 {list.map((listItem, listItemIndex) => (
                   <span

@@ -16,7 +16,7 @@ export function MenuBar({ setIsOpen }: Props) {
         {menuLists.map(menu => (
           <li
             key={menu}
-            className="w-[125px] h-full text-2xl font-medium cursor-pointer flex items-center justify-end"
+            className="w-[125px] h-full text-2xl font-medium cursor-pointer flex items-center justify-center"
           >
             <span>{menu}</span>
           </li>
