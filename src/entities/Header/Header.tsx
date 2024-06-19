@@ -25,7 +25,7 @@ export function Header() {
           </div>
         </div>
       </div>
-      {!isOpen && <Dropdown setIsOpen={setIsOpen} />}
+      {isOpen && <Dropdown setIsOpen={setIsOpen} />}
     </div>
   );
 }
