@@ -20,8 +20,8 @@ export function Dropdown({ setIsOpen }: Props) {
     router.push(fullPath);
   };
   return (
-    <div className="w-2/3 ml-auto bg-white z-10">
-      <ul className="flex justify-center items-start gap-1">
+    <div className="z-99 absolute w-1/3">
+      <ul className="flex justify-between items-start gap-1">
         {dropListValue.map(([parentKey, list], index) => (
           <li key={index} className="w-full">
             {list.map(listItem => (
