@@ -1,8 +1,12 @@
+import { useState } from 'react';
 import { FullImage } from '@/shared';
+import { useGetGalleryList } from '../apis';
 
 export function GalleryList() {
+  const [page, setPage] = useState(1);
+  const { data } = useGetGalleryList(page);
   const imgList: string[] = [];
-  if (imgList.length === 0) {
+  if (data?.length === 0) {
     return <div>이미지가 없습니다.</div>;
   }
 
