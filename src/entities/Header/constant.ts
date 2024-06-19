@@ -2,7 +2,7 @@ import { DropList } from './type';
 
 export const dropList: DropList = {
   센터소개: ['인사말', '오시는길'],
-  노인장기요양보험안내: ['노인장기요양보험안내'],
+  요양보험안내: ['요양보험안내'],
   이용안내: ['방문요양'],
   커뮤니티: ['공지사항', '상담신청'],
   자료실: ['건강정보', '교육자료'],
@@ -21,10 +21,10 @@ export const pathMapping: { [key: string]: IPathMapping } = {
       오시는길: '/way_to_come'
     }
   },
-  노인장기요양보험안내: {
+  요양보험안내: {
     path: '/long_term_care',
     children: {
-      노인장기요양보험안내: ''
+      요양보험안내: ''
     }
   },
   이용안내: {

@@ -7,6 +7,7 @@ interface Props {
 }
 
 const dropListValue = Object.entries(dropList);
+
 export function Dropdown({ setIsOpen }: Props) {
   const router = useRouter();
 
@@ -19,23 +20,31 @@ export function Dropdown({ setIsOpen }: Props) {
 
     router.push(fullPath);
   };
+
   return (
-    <div className="z-99 absolute w-1/3">
-      <ul className="flex justify-between items-start gap-1">
-        {dropListValue.map(([parentKey, list], index) => (
-          <li key={index} className="w-full">
-            {list.map(listItem => (
-              <p
-                key={listItem}
-                className="py-1 pl-1 text-center hover:text-brand-400 rounded cursor-pointer whitespace-nowrap"
-                onClick={() => navigatePage(parentKey, listItem)}
+    <div className="absolute w-full bg-white z-50 flex justify-center">
+      <div className="w-[1360px]">
+        <div className="flex justify-between  m-auto">
+          <div className="w-[300px] h-14 relative" />
+          <ul className="w-2/3 h-full flex justify-between items-center">
+            {dropListValue.map(([parentKey, list], index) => (
+              <li
+                key={index}
+                className="w-[125px] h-full text-font-gray hover:text-brand-400 text-xl font-medium cursor-pointer flex items-center justify-end flex-col text-end"
               >
-                {listItem}
-              </p>
+                {list.map((listItem, listItemIndex) => (
+                  <span
+                    key={listItemIndex}
+                    onClick={() => navigatePage(parentKey, listItem)}
+                  >
+                    {listItem}
+                  </span>
+                ))}
+              </li>
             ))}
-          </li>
-        ))}
-      </ul>
+          </ul>
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,8 +1,4 @@
-'use client';
-
-import { useState } from 'react';
 import { dropList } from '../../constant';
-import { Dropdown } from '../Dropdown/ui';
 
 const menuLists = Object.keys(dropList);
 
@@ -14,15 +10,15 @@ export function MenuBar({ setIsOpen }: Props) {
   return (
     <div
       onMouseEnter={() => setIsOpen(true)}
-      className="relative ml-auto cursor-pointer"
+      className="w-full h-12 cursor-pointer"
     >
-      <ul className="w-full h-12 flex justify-between items-center">
+      <ul className="w-full h-full flex justify-between items-center">
         {menuLists.map(menu => (
           <li
             key={menu}
-            className="h-full text-2xl font-medium cursor-pointer whitespace-nowrap"
+            className="w-[125px] h-full text-2xl font-medium cursor-pointer flex items-center justify-end"
           >
-            <span className="">{menu}</span>
+            <span>{menu}</span>
           </li>
         ))}
       </ul>

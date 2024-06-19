@@ -1,5 +1,5 @@
+import { IGetPost } from '@/shared';
 import request from '@/shared/APIs';
-import { IGetPost } from '../type';
 
 export const getGalleryList = async () => {
   const res = await request<IGetPost[]>({
