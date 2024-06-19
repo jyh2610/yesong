@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import { tokenController } from '../utils/tokenController';
 
-export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || '';
+export const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL;
 
 if (!BASE_URL) {
   throw new Error(
