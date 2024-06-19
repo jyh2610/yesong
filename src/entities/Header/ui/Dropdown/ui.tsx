@@ -22,7 +22,10 @@ export function Dropdown({ setIsOpen }: Props) {
   };
 
   return (
-    <div className="absolute w-full bg-white z-50 flex justify-center">
+    <div
+      onMouseLeave={() => setIsOpen(false)}
+      className="absolute p2-4 w-full bg-white z-50 flex justify-center"
+    >
       <div className="w-[1360px]">
         <div className="flex justify-between  m-auto">
           <div className="w-[300px] h-14 relative" />
@@ -30,11 +33,12 @@ export function Dropdown({ setIsOpen }: Props) {
             {dropListValue.map(([parentKey, list], index) => (
               <li
                 key={index}
-                className="w-[125px] h-full text-font-gray hover:text-brand-400 text-xl font-medium cursor-pointer flex items-center justify-center flex-col text-end"
+                className="w-[125px] h-full text-font-gray text-xl font-medium cursor-pointer flex items-center justify-center flex-col text-end"
               >
                 {list.map((listItem, listItemIndex) => (
                   <span
                     key={listItemIndex}
+                    className="hover:text-brand-400"
                     onClick={() => navigatePage(parentKey, listItem)}
                   >
                     {listItem}

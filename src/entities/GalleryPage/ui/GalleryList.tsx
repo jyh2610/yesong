@@ -1,22 +1,38 @@
+import { Image, Pagination } from '@nextui-org/react';
 import { useState } from 'react';
-import { FullImage } from '@/shared';
 import { useGetGalleryList } from '../apis';
 
+const showPerPage = 12;
 export function GalleryList() {
   const [page, setPage] = useState(1);
   const { data } = useGetGalleryList(page);
-  const imgList: string[] = [];
-  if (data?.length === 0) {
+  const pages = data ? Math.ceil(data.length / showPerPage) : 1;
+  if (data === undefined) {
     return <div>이미지가 없습니다.</div>;
   }
 
   return (
-    <div>
-      {imgList.map((src, idx) => (
-        <div key={idx} className="relative">
-          <FullImage src={src} altContent="갤러리 이미지" />
-        </div>
-      ))}
-    </div>
+    <>
+      <div>
+        {data[0].files.map(file => (
+          <Image
+            key={file.fileName}
+            isZoomed
+            width={240}
+            alt="NextUI Fruit Image with Zoom"
+            src={file.fileURL}
+          />
+        ))}
+      </div>
+      <Pagination
+        isCompact
+        showControls
+        showShadow
+        color="secondary"
+        page={page}
+        total={pages}
+        onChange={page => setPage(page)}
+      />
+    </>
   );
 }

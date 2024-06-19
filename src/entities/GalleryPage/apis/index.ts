@@ -11,6 +11,7 @@ export const getGalleryList = async (page: number) => {
       size: 8
     }
   });
+
   return res.data;
 };
 

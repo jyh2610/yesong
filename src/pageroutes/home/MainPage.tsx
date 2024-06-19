@@ -12,8 +12,8 @@ export function MainPage() {
       <BasicSlider imageUrl={bannerImg} height={'595px'} />
       <div className="max-w-[1360px] mx-auto">
         <MainCard />
-        <Notice />
         <Redirect />
+        <Notice />
       </div>
       <Gallery />
     </div>
