@@ -7,7 +7,7 @@ export function GalleryPage() {
   return (
     <div>
       <p className="font-semibold text-5xl">갤러리</p>
-      {tokenController.getAccessToken() !== undefined && <AdminButton />}
+      {/* {tokenController.getAccessToken() !== undefined && <AdminButton />} */}
       <GalleryList />
     </div>
   );

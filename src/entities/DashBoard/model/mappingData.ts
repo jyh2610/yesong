@@ -10,12 +10,16 @@ export interface MappedData {
 }
 
 export const mappingData = (data: IGetPost[]): MappedData[] => {
-  return data.map(post => ({
-    key: post.id.toString(),
-    id: post.id,
-    title: post.title,
-    author: post.author,
-    createdAt: post.createdAt,
-    count: post.viewCount
-  }));
+  const res: MappedData[] =
+    data.length > 0
+      ? data.map(post => ({
+          key: post.id.toString(),
+          id: post.id,
+          title: post.title,
+          author: post.author,
+          createdAt: post.createdAt,
+          count: post.viewCount
+        }))
+      : [];
+  return res;
 };

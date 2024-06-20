@@ -15,3 +15,10 @@ export interface IGetPost {
   updatedAt: string;
   viewCount: number;
 }
+
+export interface IGetPostData {
+  totalPages: number;
+  totalElements: number;
+  size: number;
+  content: IGetPost[];
+}

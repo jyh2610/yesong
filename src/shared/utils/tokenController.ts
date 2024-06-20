@@ -1,4 +1,4 @@
-import { setCookie, getCookie, deleteCookie } from 'cookies-next';
+import { setCookie, deleteCookie, getCookie } from 'cookies-next';
 
 interface IToken {
   accessToken: string;

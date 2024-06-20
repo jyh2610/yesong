@@ -16,4 +16,4 @@ export { generateFormData } from './utils/generateFormdata';
 
 //type
 export type { IPostRes } from './types/login';
-export type { IGetPost } from './types/posts';
+export type { IGetPost, IGetPostData } from './types/posts';

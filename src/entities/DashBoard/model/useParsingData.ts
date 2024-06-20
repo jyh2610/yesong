@@ -1,3 +1,5 @@
+'use client';
+
 import dayjs from 'dayjs';
 import { IGetPost } from '@/shared';
 import { useGetPosts } from '../api';
@@ -14,16 +16,17 @@ export function useParsingData({ page, category }: UseCustomPostsProps): {
   parsedData: IGetPost[] | undefined;
 } {
   const { data } = useGetPosts({ page, category });
-  const mappingRows = data && mappingData(data);
-  const pages = data ? Math.ceil(data.length / 8) : 1;
+  const mappingRows = data ? mappingData(data.content) : undefined;
+  const pages = data ? Math.ceil(data.totalElements / 8) : 1;
 
   const parsedData: IGetPost[] | undefined =
-    data &&
-    data.map(item => ({
-      ...item,
-      createdAt: dayjs(item.createdAt).format('YYYY-MM-DD'),
-      id: page * Number(item.id)
-    }));
+    data && data.content.length > 0
+      ? data.content.map(item => ({
+          ...item,
+          createdAt: dayjs(item.createdAt).format('YYYY-MM-DD'),
+          id: page * Number(item.id)
+        }))
+      : undefined;
 
   return { mappingRows, pages, parsedData };
 }

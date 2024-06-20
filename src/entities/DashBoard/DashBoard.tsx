@@ -35,7 +35,7 @@ export function DashBoard() {
 
   return (
     <div className="mt-10 flex flex-col gap-3">
-      {tokenController.getAccessToken() !== undefined && <AdminButton />}
+      <AdminButton />
       <Table
         aria-label="table"
         selectionMode="multiple"
