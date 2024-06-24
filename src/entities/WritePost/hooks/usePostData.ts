@@ -1,7 +1,8 @@
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useToast } from '@/app/_providers/ToastProvider';
 import { menuMapping } from '@/entities/DashBoard/constant';
+import { getPostById } from '@/entities/Detail/api';
 import { postDashBoard } from '../api';
 import { IPostData } from '../type';
 
@@ -21,8 +22,24 @@ export function usePostData() {
   const router = useRouter();
   const pathname = usePathname();
   const segments = pathname.split('/');
+  const searchParams = useSearchParams();
+  const postId = searchParams.get('postId');
 
   const lastSegment = segments[segments.length - 1] as MenuMappingKeys;
+
+  useEffect(() => {
+    const getFixData = async (id: string) => {
+      try {
+        const res = await getPostById(id);
+        setPostData(res); // API 호출 결과를 상태에 업데이트
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+    if (postId) {
+      getFixData(postId);
+    }
+  }, []);
 
   useEffect(() => {
     setPostData(prev => ({

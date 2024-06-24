@@ -1,7 +1,9 @@
 import { Divider } from '@nextui-org/divider';
+import Link from 'next/link';
 import { FullImage, IGetPost } from '@/shared';
+import { RemoteButton } from './ui/RemoteButton';
 
-export async function Detail({ res }: { res: IGetPost }) {
+export async function Detail({ id, res }: { id: string; res: IGetPost }) {
   return (
     <div>
       <div>
@@ -19,9 +21,20 @@ export async function Detail({ res }: { res: IGetPost }) {
         </div>
       </div>
       <Divider className="my-4" />
-      <div dangerouslySetInnerHTML={{ __html: res.content }} />
+      <RemoteButton id={id} category={res.category} />
+      <div
+        className="mt-10"
+        dangerouslySetInnerHTML={{ __html: res.content }}
+      />
       {res.links.map((link, index) => (
-        <p key={index}>{link}</p>
+        <a
+          key={index}
+          href={`https://${link}`}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <p>{link}</p>
+        </a>
       ))}
       {res.files.map((file, index) => (
         <div key={index} className="relative w-full h-[800px]">

@@ -9,3 +9,10 @@ export const getPostById = async (id: string): Promise<IGetPost> => {
 
   return res.data;
 };
+
+export const deletePost = async (id: string) => {
+  await request({
+    method: 'DELETE',
+    url: `/api/posts/${id}`
+  });
+};

@@ -1,7 +1,7 @@
 'use client';
 import { Checkbox } from '@nextui-org/checkbox';
 import { Button } from '@nextui-org/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { initialData, usePostData } from './hooks/usePostData';
 import { ListWithTitle } from './ui/ListWithTitle';
 import { ReactQuillEditor } from './ui/ReactQuillEditor';
