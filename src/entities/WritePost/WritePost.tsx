@@ -3,9 +3,9 @@ import { Checkbox } from '@nextui-org/checkbox';
 import { Button, Radio } from '@nextui-org/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { initialData, usePostData } from './hooks/usePostData';
+import { IPostData, PostState } from './type';
 import { ListWithTitle } from './ui/ListWithTitle';
 import { ReactQuillEditor } from './ui/ReactQuillEditor';
-import { IPostData } from './type';
 
 export function WritePost() {
   const {
@@ -68,7 +68,7 @@ export function WritePost() {
           <input
             value={postData.links[1]}
             onChange={e =>
-              setPostData((prev: IPostData) => ({
+              setPostData((prev: PostState) => ({
                 ...prev,
                 links: [prev.links[0], e.target.value]
               }))

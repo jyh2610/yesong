@@ -2,14 +2,14 @@
 import dynamic from 'next/dynamic';
 import { Dispatch, SetStateAction } from 'react';
 import 'react-quill/dist/quill.snow.css';
-import { IPostData } from '../type';
+import { PostState } from '../type';
 
 // Dynamically import React Quill to avoid SSR issues
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // Define the props for the editor component
 interface ReactQuillEditorProps {
-  setPostData: Dispatch<SetStateAction<IPostData>>;
+  setPostData: Dispatch<SetStateAction<PostState>>;
 }
 
 export function ReactQuillEditor({ setPostData }: ReactQuillEditorProps) {
