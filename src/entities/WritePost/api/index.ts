@@ -1,7 +1,10 @@
 import request from '@/shared/APIs';
 import { PostState } from '../type';
 
-export const postDashBoard = async (params: PostState, image: File[]) => {
+export const postDashBoard = async (
+  params: PostState,
+  image: (File | null)[]
+) => {
   const formData = new FormData();
 
   // Append the JSON part as a Blob
