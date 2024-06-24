@@ -4,9 +4,9 @@ import { useToast } from '@/app/_providers/ToastProvider';
 import { menuMapping } from '@/entities/DashBoard/constant';
 import { getPostById } from '@/entities/Detail/api';
 import { postDashBoard } from '../api';
-import { IPostData } from '../type';
+import { PostState } from '../type';
 
-export const initialData: IPostData = {
+export const initialData: PostState = {
   title: '',
   content: '',
   category: '',
@@ -17,7 +17,7 @@ export const initialData: IPostData = {
 type MenuMappingKeys = keyof typeof menuMapping;
 
 export function usePostData() {
-  const [postData, setPostData] = useState<IPostData>(initialData);
+  const [postData, setPostData] = useState<PostState>(initialData);
   const [uploadImage, setUploadImage] = useState<(File | null)[]>([null, null]);
   const { showToast } = useToast();
   const router = useRouter();
@@ -57,7 +57,7 @@ export function usePostData() {
 
   const postDashBoardHandler = async () => {
     try {
-      await postDashBoard(postData);
+      await postDashBoard(postData, uploadImage);
       setPostData(initialData);
       setUploadImage([null, null]);
       showToast({

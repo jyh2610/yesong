@@ -1,7 +1,7 @@
 import request from '@/shared/APIs';
-import { IPostData } from '../type';
+import { PostState } from '../type';
 
-export const postDashBoard = async (params: IPostData) => {
+export const postDashBoard = async (params: PostState, image: File[]) => {
   const formData = new FormData();
 
   // Append the JSON part as a Blob
@@ -21,7 +21,7 @@ export const postDashBoard = async (params: IPostData) => {
   );
 
   // Append files to form data
-  params.files.forEach((file, index) => {
+  image.forEach((file, index) => {
     if (file) {
       formData.append('files', file);
     }
