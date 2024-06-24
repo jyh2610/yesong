@@ -13,6 +13,7 @@ export { companyInfo } from './constant/companyInfo';
 export { getFullPath } from './utils/getFullPath';
 export { tokenController } from './utils/tokenController';
 export { generateFormData } from './utils/generateFormdata';
+export { formatYYYYMMDD } from './utils/formatDate';
 
 //type
 export type { IPostRes } from './types/login';

@@ -1,5 +1,5 @@
 import { Divider } from '@nextui-org/divider';
-import { FullImage, IGetPost } from '@/shared';
+import { FullImage, IGetPost, formatYYYYMMDD } from '@/shared';
 import { RemoteButton } from './ui/RemoteButton';
 
 export function Detail({ id, res }: { id: string; res: IGetPost }) {
@@ -12,7 +12,7 @@ export function Detail({ id, res }: { id: string; res: IGetPost }) {
             <p>작성자</p>
             <p className="font-semibold">{res.author}</p>
           </div>
-          <p>{res.createdAt}</p>
+          <p>{formatYYYYMMDD(res.createdAt)}</p>
           <div className="flex gap-2">
             <p>조회</p>
             <p>{res.viewCount}회</p>

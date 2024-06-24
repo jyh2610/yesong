@@ -1,7 +1,7 @@
 'use client';
 
 import dayjs from 'dayjs';
-import { IGetPost } from '@/shared';
+import { IGetPost, formatYYYYMMDD } from '@/shared';
 import { useGetPosts } from '../api';
 import { MappedData, mappingData } from '../model/mappingData';
 
@@ -23,7 +23,7 @@ export function useParsingData({ page, category }: UseCustomPostsProps): {
     data && data.content.length > 0
       ? data.content.map(item => ({
           ...item,
-          createdAt: dayjs(item.createdAt).format('YYYY-MM-DD'),
+          createdAt: formatYYYYMMDD(item.createdAt),
           id: page * Number(item.id)
         }))
       : undefined;

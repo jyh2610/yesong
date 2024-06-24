@@ -14,14 +14,6 @@ export function LoginHeader() {
         <span className=" text-brandSize font-medium">홈</span>
       </>
     ),
-    이메일: (
-      <>
-        <Link href="/">
-          <IoMdMail size={22} />
-        </Link>
-        <span className=" text-brandSize font-medium">이메일</span>
-      </>
-    ),
     관리자: (
       <>
         <MdManageAccounts size={22} />

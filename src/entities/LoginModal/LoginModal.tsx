@@ -53,7 +53,7 @@ export function LoginModal() {
 
   const handleLogout = () => {
     tokenController.clearTokens();
-    setIsLoggedIn(false); // Update login state
+    setIsLoggedIn(false);
     showToast({
       type: 'success',
       message: '로그아웃 되었습니다.'
