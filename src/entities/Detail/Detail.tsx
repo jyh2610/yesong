@@ -1,5 +1,4 @@
 import { Divider } from '@nextui-org/divider';
-import Link from 'next/link';
 import { FullImage, IGetPost } from '@/shared';
 import { RemoteButton } from './ui/RemoteButton';
 

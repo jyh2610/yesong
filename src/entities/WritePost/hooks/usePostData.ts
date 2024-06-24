@@ -10,14 +10,15 @@ export const initialData: IPostData = {
   title: '',
   content: '',
   category: '',
-  links: ['', ''],
-  files: [null, null] // Initialize files as a tuple with two null values
+  links: [],
+  files: [null, null]
 };
 
 type MenuMappingKeys = keyof typeof menuMapping;
 
 export function usePostData() {
   const [postData, setPostData] = useState<IPostData>(initialData);
+  const [uploadImage, setUploadImage] = useState<(File | null)[]>([null, null]);
   const { showToast } = useToast();
   const router = useRouter();
   const pathname = usePathname();
@@ -31,7 +32,13 @@ export function usePostData() {
     const getFixData = async (id: string) => {
       try {
         const res = await getPostById(id);
-        setPostData(res); // API 호출 결과를 상태에 업데이트
+        setPostData({
+          title: res.title,
+          content: res.content,
+          category: res.category,
+          links: res.links,
+          files: res.files
+        });
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -39,7 +46,7 @@ export function usePostData() {
     if (postId) {
       getFixData(postId);
     }
-  }, []);
+  }, [postId]);
 
   useEffect(() => {
     setPostData(prev => ({
@@ -52,6 +59,7 @@ export function usePostData() {
     try {
       await postDashBoard(postData);
       setPostData(initialData);
+      setUploadImage([null, null]);
       showToast({
         type: 'success',
         message: '게시판 등록에 성공했습니다.'
@@ -65,5 +73,11 @@ export function usePostData() {
     }
   };
 
-  return { postData, setPostData, postDashBoardHandler };
+  return {
+    postData,
+    setPostData,
+    postDashBoardHandler,
+    uploadImage,
+    setUploadImage
+  };
 }

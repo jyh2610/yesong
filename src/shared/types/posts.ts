@@ -1,4 +1,4 @@
-export interface File {
+export interface IFile {
   fileName: string;
   fileURL: string;
 }
@@ -9,7 +9,7 @@ export interface IGetPost {
   content: string;
   category: string;
   links: string[];
-  files: File[];
+  files: [IFile, IFile];
   author: string;
   createdAt: string;
   updatedAt: string;
