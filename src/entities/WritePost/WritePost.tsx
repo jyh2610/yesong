@@ -28,9 +28,6 @@ export function WritePost() {
   return (
     <>
       <ul className="w-full">
-        <ListWithTitle title="옵션">
-          <Checkbox>공지</Checkbox>
-        </ListWithTitle>
         <ListWithTitle title="제목">
           <input
             value={postData.title}
