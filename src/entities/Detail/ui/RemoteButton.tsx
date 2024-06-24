@@ -26,6 +26,7 @@ export function RemoteButton({
         type: 'success',
         message: '삭제에 성공했습니다.'
       });
+      router.back();
     } catch {
       showToast({
         type: 'fail',
