@@ -2,7 +2,7 @@ import { Divider } from '@nextui-org/divider';
 import { FullImage, IGetPost } from '@/shared';
 import { RemoteButton } from './ui/RemoteButton';
 
-export async function Detail({ id, res }: { id: string; res: IGetPost }) {
+export function Detail({ id, res }: { id: string; res: IGetPost }) {
   return (
     <div>
       <div>

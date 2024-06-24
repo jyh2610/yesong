@@ -7,7 +7,6 @@ export const postDashBoard = async (
 ) => {
   const formData = new FormData();
 
-  // Append the JSON part as a Blob
   formData.append(
     'postCreateDTO',
     new Blob(
