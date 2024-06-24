@@ -1,6 +1,6 @@
 import { useRouter } from 'next/navigation';
 import { getFullPath } from '@/shared';
-import { dropList, pathMapping, IPathMapping } from '../../constant';
+import { dropList, pathMapping } from '../../constant';
 
 interface Props {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
@@ -24,12 +24,12 @@ export function Dropdown({ setIsOpen }: Props) {
   return (
     <div
       onMouseLeave={() => setIsOpen(false)}
-      className="absolute p2-4 w-full bg-white z-50 flex justify-center"
+      className="absolute p-4 w-full bg-white z-50 flex justify-center"
     >
       <div className="w-[1360px]">
-        <div className="flex justify-between  m-auto">
+        <div className="flex justify-between m-auto">
           <div className="w-[300px] h-14 relative" />
-          <ul className="w-2/3 h-full flex justify-between items-center">
+          <ul className="w-2/3 h-full flex justify-between items-start">
             {dropListValue.map(([parentKey, list], index) => (
               <li
                 key={index}
@@ -38,7 +38,7 @@ export function Dropdown({ setIsOpen }: Props) {
                 {list.map((listItem, listItemIndex) => (
                   <span
                     key={listItemIndex}
-                    className="hover:text-brand-400"
+                    className="hover:text-brand-400 mt-1"
                     onClick={() => navigatePage(parentKey, listItem)}
                   >
                     {listItem}

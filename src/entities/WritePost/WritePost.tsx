@@ -8,7 +8,19 @@ import { ReactQuillEditor } from './ui/ReactQuillEditor';
 
 export function WritePost() {
   const { postData, setPostData, postDashBoardHandler } = usePostData();
-  const route = useRouter();
+  const router = useRouter();
+
+  const handleFileChange = (index: number, file: File | null) => {
+    setPostData(prev => {
+      const newFiles = [...prev.files] as [File | null, File | null];
+      newFiles[index] = file;
+      return {
+        ...prev,
+        files: newFiles
+      };
+    });
+  };
+
   return (
     <>
       <ul className="w-full">
@@ -63,17 +75,25 @@ export function WritePost() {
           />
         </ListWithTitle>
         <ListWithTitle title="파일 #1">
-          <input type="file" placeholder="파일을 선택하세요." />
+          <input
+            type="file"
+            onChange={e => handleFileChange(0, e.target.files?.[0] ?? null)}
+            placeholder="파일을 선택하세요."
+          />
         </ListWithTitle>
         <ListWithTitle title="파일 #2">
-          <input type="file" placeholder="파일을 선택하세요." />
+          <input
+            type="file"
+            onChange={e => handleFileChange(1, e.target.files?.[0] ?? null)}
+            placeholder="파일을 선택하세요."
+          />
         </ListWithTitle>
       </ul>
       <div className="w-full mt-4 flex justify-end gap-2">
         <Button
           color="danger"
           onClick={() => {
-            route.back();
+            router.back();
             setPostData(initialData);
           }}
         >

@@ -30,6 +30,6 @@ export const useGetPosts = ({
 }): UseQueryResult<IGetPostData, Error> => {
   return useQuery<IGetPostData, Error>({
     queryKey: ['postList', page, category],
-    queryFn: () => getPosts({ page, category })
+    queryFn: () => getPosts({ page: page - 1, category })
   });
 };

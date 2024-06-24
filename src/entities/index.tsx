@@ -13,3 +13,4 @@ export { WritePost } from './WritePost/WritePost';
 export { LoginModal } from './LoginModal/LoginModal';
 export { Toast } from './Toast/Toast';
 export { GalleryPage } from './GalleryPage/GalleryPage';
+export { Detail } from './Detail/Detail';

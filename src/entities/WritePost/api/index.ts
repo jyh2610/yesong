@@ -4,7 +4,7 @@ import { IPostData } from '../type';
 export const postDashBoard = async (params: IPostData) => {
   const formData = new FormData();
 
-  // Append the JSON string as a Blob object with type application/json
+  // Append the JSON part as a Blob
   formData.append(
     'postCreateDTO',
     new Blob(
@@ -19,6 +19,13 @@ export const postDashBoard = async (params: IPostData) => {
       { type: 'application/json' }
     )
   );
+
+  // Append files to form data
+  params.files.forEach((file, index) => {
+    if (file) {
+      formData.append('files', file);
+    }
+  });
 
   await request({
     method: 'POST',

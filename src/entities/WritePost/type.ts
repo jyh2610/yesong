@@ -3,4 +3,5 @@ export interface IPostData {
   content: string;
   links: [string, string];
   category: string;
+  files: [File | null, File | null];
 }

@@ -11,22 +11,23 @@ export function GalleryList() {
   const { data } = useGetGalleryList(page);
   const pages = data ? Math.ceil(data.length / showPerPage) : 1;
 
-  if (data === undefined) {
+  if (!data || data.length === 0) {
     return <div>이미지가 없습니다.</div>;
   }
 
   return (
     <>
       <div>
-        {data[0].files.map(file => (
-          <Image
-            key={file.fileName}
-            isZoomed
-            width={240}
-            alt="NextUI Fruit Image with Zoom"
-            src={file.fileURL}
-          />
-        ))}
+        {data[0] &&
+          data[0].files?.map(file => (
+            <Image
+              key={file.fileName}
+              isZoomed
+              width={240}
+              alt="gallery image"
+              src={file.fileURL}
+            />
+          ))}
       </div>
       <Pagination
         isCompact
