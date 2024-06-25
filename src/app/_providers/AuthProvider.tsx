@@ -20,7 +20,7 @@ const AuthContext = createContext<ContextType>({
   setIsLogin: () => undefined
 });
 
-export const AuthProvider = ({ children }: { children: ReactNode }) => {
+const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
@@ -36,3 +36,5 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
 };
 
 export const useAuth = () => useContext(AuthContext);
+
+export default AuthProvider;

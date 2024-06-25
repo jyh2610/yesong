@@ -4,12 +4,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { IoMdCall } from 'react-icons/io';
-import { pathMapping, IPathMapping } from '@/entities/Header/constant';
+import { pathMapping } from '@/entities/Header/constant';
 import { RenderSubMenu } from './RenderSubMenu';
 
 export function SideMenu() {
-  const [activeMenuKey, setActiveMenuKey] = useState<string>('');
-
   const router = useRouter();
   const pathname = usePathname();
 
@@ -17,11 +15,17 @@ export function SideMenu() {
   const parentPath = `/${segments[2]}`;
   const lastSegment = segments[segments.length - 1];
 
-  useEffect(() => {
-    const currentMenu = Object.entries(pathMapping).find(
-      ([, value]) => value.path === parentPath
-    );
+  const currentMenu = Object.entries(pathMapping).find(
+    ([, value]) => value.path === parentPath
+  );
+  const [activeMenuKey, setActiveMenuKey] = useState<string>('');
+  const [menuList, setMenuList] = useState(
+    currentMenu && currentMenu[1].children
+      ? Object.keys(currentMenu[1].children)
+      : []
+  );
 
+  useEffect(() => {
     if (currentMenu && currentMenu[1].children) {
       const foundKey =
         Object.entries(currentMenu[1].children).find(
@@ -29,16 +33,7 @@ export function SideMenu() {
         )?.[0] || '';
       setActiveMenuKey(foundKey || currentMenu[0]);
     }
-  }, [parentPath, lastSegment]);
-
-  const currentMenu = Object.entries(pathMapping).find(
-    ([, value]) => value.path === parentPath
-  );
-
-  const menuList =
-    currentMenu && currentMenu[1].children
-      ? Object.keys(currentMenu[1].children)
-      : [];
+  }, [currentMenu, lastSegment]);
 
   const generatePath = (menu: string) => {
     const child = currentMenu && currentMenu[1].children[menu];

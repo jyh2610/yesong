@@ -1,5 +1,5 @@
 import { useRouter } from 'next/navigation'; // next/router를 사용합니다.
-import { IPathMapping, pathMapping } from '@/entities/Header/constant';
+import { IPathMapping } from '@/entities/Header/constant';
 
 interface RenderSubMenuProps {
   parentPath: string;
@@ -16,8 +16,6 @@ export const RenderSubMenu = ({
   menu,
   child
 }: RenderSubMenuProps) => {
-  const router = useRouter();
-
   if (typeof child === 'object' && 'children' in child) {
     return (
       <div className="pl-4">
