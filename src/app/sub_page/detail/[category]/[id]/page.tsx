@@ -1,10 +1,9 @@
 import { Detail } from '@/entities';
-import { getPostById } from '@/entities/Detail/api';
+import { getPostById, useGetPostById } from '@/entities/Detail/api';
 
 const DetailPage = async ({ params }: { params: { id: string } }) => {
   const { id } = params;
-  const res = await getPostById(id);
-  return <Detail id={id} res={res} />;
+  return <Detail id={id} />;
 };
 
 export default DetailPage;

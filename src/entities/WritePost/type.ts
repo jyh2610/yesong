@@ -9,9 +9,10 @@ export interface IPostData {
 }
 
 export interface PostState {
+  id?: string;
   title: string;
   content: string;
   links: string[];
   category: string;
-  files: [IFile | null, IFile | null];
+  files: IFile[];
 }

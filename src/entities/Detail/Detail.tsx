@@ -3,10 +3,14 @@
 import { Divider } from '@nextui-org/divider';
 import { useAuth } from '@/app/_providers/AuthProvider';
 import { FullImage, IGetPost, formatYYYYMMDD } from '@/shared';
+import { useGetPostById } from './api';
 import { RemoteButton } from './ui/RemoteButton';
 
-export function Detail({ id, res }: { id: string; res: IGetPost }) {
+export function Detail({ id }: { id: string }) {
   const { isLogin } = useAuth();
+  const { data: res } = useGetPostById(id);
+
+  if (res === undefined) return null;
   return (
     <div>
       <div>

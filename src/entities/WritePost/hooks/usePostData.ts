@@ -11,22 +11,25 @@ export const initialData: PostState = {
   content: '',
   category: '',
   links: [],
-  files: [null, null]
+  files: []
 };
 
 type MenuMappingKeys = keyof typeof menuMapping;
 
 export function usePostData() {
   const [postData, setPostData] = useState<PostState>(initialData);
-  const [uploadImage, setUploadImage] = useState<(File | null)[]>([]);
+  const [uploadImage, setUploadImage] = useState<File[]>([]);
+  const existingImgId = postData.files.map(file => file?.id);
+
   const { showToast } = useToast();
+
   const router = useRouter();
   const pathname = usePathname();
   const segments = pathname.split('/');
   const searchParams = useSearchParams();
-  const postId = searchParams.get('postId');
-
   const lastSegment = segments[segments.length - 1] as MenuMappingKeys;
+
+  const postId = searchParams.get('postId');
 
   useEffect(() => {
     const getFixData = async (id: string) => {
@@ -57,9 +60,11 @@ export function usePostData() {
 
   const postDashBoardHandler = async () => {
     try {
-      await postDashBoard(postData, uploadImage);
+      postId
+        ? await postDashBoard(postData, uploadImage, postId)
+        : await postDashBoard(postData, uploadImage);
       setPostData(initialData);
-      setUploadImage([null, null]);
+      setUploadImage([]);
       showToast({
         type: 'success',
         message: '게시판 등록에 성공했습니다.'
@@ -72,12 +77,25 @@ export function usePostData() {
       });
     }
   };
+  const removeExistingImg = (id: string) => {
+    setPostData(prev => ({
+      ...prev,
+      files: prev.files.filter(file => file?.id !== id)
+    }));
+  };
+
+  const removeUploadImage = (index: number) => {
+    setUploadImage(prev => prev.filter((_, i) => i !== index));
+  };
 
   return {
     postData,
     setPostData,
     postDashBoardHandler,
     uploadImage,
-    setUploadImage
+    setUploadImage,
+    existingImgId,
+    removeExistingImg,
+    removeUploadImage
   };
 }

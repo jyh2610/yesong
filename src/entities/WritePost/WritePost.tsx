@@ -1,8 +1,6 @@
 'use client';
 import { Button } from '@nextui-org/react';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useEffect } from 'react';
-import { useAuth } from '@/app/_providers/AuthProvider';
 import { initialData, usePostData } from './hooks/usePostData';
 import { PostState } from './type';
 import { ListWithTitle } from './ui/ListWithTitle';
@@ -14,16 +12,14 @@ export function WritePost() {
     setPostData,
     postDashBoardHandler,
     setUploadImage,
-    uploadImage
+    uploadImage,
+    removeExistingImg,
+    removeUploadImage
   } = usePostData();
   const router = useRouter();
 
-  const handleFileChange = (index: number, file: File | null) => {
-    setUploadImage(prev => {
-      const newFiles = [...prev];
-      newFiles[index] = file;
-      return newFiles;
-    });
+  const handleFileChange = (file: File) => {
+    setUploadImage(prev => [...prev, file]);
   };
 
   return (
@@ -31,7 +27,7 @@ export function WritePost() {
       <ul className="w-full">
         <ListWithTitle title="제목">
           <input
-            value={postData.title}
+            value={postData.title || ''}
             className="bg-gray-100 w-full p-1"
             onChange={e =>
               setPostData(prev => ({
@@ -50,7 +46,7 @@ export function WritePost() {
         </ListWithTitle>
         <ListWithTitle title="링크 #1">
           <input
-            value={postData.links[0]}
+            value={postData.links[0] || ''}
             onChange={e =>
               setPostData(prev => ({
                 ...prev,
@@ -64,7 +60,7 @@ export function WritePost() {
         </ListWithTitle>
         <ListWithTitle title="링크 #2">
           <input
-            value={postData.links[1]}
+            value={postData.links[1] || ''}
             onChange={e =>
               setPostData((prev: PostState) => ({
                 ...prev,
@@ -80,21 +76,21 @@ export function WritePost() {
           <input
             type="file"
             accept="image/*"
-            onChange={e => handleFileChange(0, e.target.files?.[0] ?? null)}
+            onChange={e => handleFileChange(e.target.files?.[0] as File)}
             placeholder="파일을 선택하세요."
           />
           {uploadImage.length > 0 &&
             uploadImage.map((file, index) => (
               <div key={index}>
                 <span>{file?.name}</span>
-                <button>삭제</button>
+                <button onClick={() => removeUploadImage(index)}>삭제</button>
               </div>
             ))}
           {postData.files &&
             postData.files.map((file, index) => (
               <div key={index}>
                 <span>{file?.fileName}</span>
-                <button>삭제</button>
+                <button onClick={() => removeExistingImg(file.id)}>삭제</button>
               </div>
             ))}
         </ListWithTitle>

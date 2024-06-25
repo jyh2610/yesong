@@ -1,3 +1,4 @@
+import { useQuery } from '@tanstack/react-query';
 import { IGetPost } from '@/shared';
 import request from '@/shared/APIs';
 
@@ -8,6 +9,14 @@ export const getPostById = async (id: string): Promise<IGetPost> => {
   });
 
   return res.data;
+};
+
+export const useGetPostById = (id: string) => {
+  return useQuery<IGetPost>({
+    queryKey: ['postDataById', id],
+    queryFn: () => getPostById(id),
+    enabled: !!id
+  });
 };
 
 export const deletePost = async (id: string) => {

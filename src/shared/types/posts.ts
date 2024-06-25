@@ -1,4 +1,5 @@
 export interface IFile {
+  id: string;
   fileName: string;
   fileURL: string;
 }
