@@ -8,6 +8,8 @@ import { pathMapping } from '@/entities/Header/constant';
 import { RenderSubMenu } from './RenderSubMenu';
 
 export function SideMenu() {
+  const [activeMenuKey, setActiveMenuKey] = useState<string>('');
+
   const router = useRouter();
   const pathname = usePathname();
 
@@ -15,17 +17,11 @@ export function SideMenu() {
   const parentPath = `/${segments[2]}`;
   const lastSegment = segments[segments.length - 1];
 
-  const currentMenu = Object.entries(pathMapping).find(
-    ([, value]) => value.path === parentPath
-  );
-  const [activeMenuKey, setActiveMenuKey] = useState<string>('');
-  const [menuList, setMenuList] = useState(
-    currentMenu && currentMenu[1].children
-      ? Object.keys(currentMenu[1].children)
-      : []
-  );
-
   useEffect(() => {
+    const currentMenu = Object.entries(pathMapping).find(
+      ([, value]) => value.path === parentPath
+    );
+
     if (currentMenu && currentMenu[1].children) {
       const foundKey =
         Object.entries(currentMenu[1].children).find(
@@ -33,7 +29,16 @@ export function SideMenu() {
         )?.[0] || '';
       setActiveMenuKey(foundKey || currentMenu[0]);
     }
-  }, [currentMenu, lastSegment]);
+  }, [parentPath, lastSegment]);
+
+  const currentMenu = Object.entries(pathMapping).find(
+    ([, value]) => value.path === parentPath
+  );
+
+  const menuList =
+    currentMenu && currentMenu[1].children
+      ? Object.keys(currentMenu[1].children)
+      : [];
 
   const generatePath = (menu: string) => {
     const child = currentMenu && currentMenu[1].children[menu];
