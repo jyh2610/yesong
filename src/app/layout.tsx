@@ -4,8 +4,8 @@ import localFont from 'next/font/local';
 import Script from 'next/script';
 import { Footer, Header } from '@/entities';
 import { NextUiProvider, QueryProvider } from './_providers';
-import ToastProvider from './_providers/ToastProvider';
 import AuthProvider from './_providers/AuthProvider';
+import ToastProvider from './_providers/ToastProvider';
 
 const pretendard = localFont({
   src: '../../public/assets/font/PretendardVariable.ttf',
