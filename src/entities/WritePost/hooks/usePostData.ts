@@ -18,7 +18,7 @@ type MenuMappingKeys = keyof typeof menuMapping;
 
 export function usePostData() {
   const [postData, setPostData] = useState<PostState>(initialData);
-  const [uploadImage, setUploadImage] = useState<(File | null)[]>([null, null]);
+  const [uploadImage, setUploadImage] = useState<(File | null)[]>([]);
   const { showToast } = useToast();
   const router = useRouter();
   const pathname = usePathname();

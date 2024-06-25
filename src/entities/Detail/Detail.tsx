@@ -1,8 +1,12 @@
+'use client';
+
 import { Divider } from '@nextui-org/divider';
+import { useAuth } from '@/app/_providers/AuthProvider';
 import { FullImage, IGetPost, formatYYYYMMDD } from '@/shared';
 import { RemoteButton } from './ui/RemoteButton';
 
 export function Detail({ id, res }: { id: string; res: IGetPost }) {
+  const { isLogin } = useAuth();
   return (
     <div>
       <div>
@@ -20,7 +24,8 @@ export function Detail({ id, res }: { id: string; res: IGetPost }) {
         </div>
       </div>
       <Divider className="my-4" />
-      <RemoteButton id={id} category={res.category} />
+
+      {isLogin && <RemoteButton id={id} category={res.category} />}
       <div
         className="mt-10"
         dangerouslySetInnerHTML={{ __html: res.content }}

@@ -5,6 +5,7 @@ import Script from 'next/script';
 import { Footer, Header } from '@/entities';
 import { NextUiProvider, QueryProvider } from './_providers';
 import ToastProvider from './_providers/ToastProvider';
+import { AuthProvider } from './_providers/AuthProvider';
 
 const pretendard = localFont({
   src: '../../public/assets/font/PretendardVariable.ttf',
@@ -29,15 +30,17 @@ export default function RootLayout({
         defer
       />
       <body className={`w-full ${pretendard.variable} font-pretendard `}>
-        <ToastProvider>
-          <QueryProvider>
-            <NextUiProvider>
-              <Header />
-              {children}
-              <Footer />
-            </NextUiProvider>
-          </QueryProvider>
-        </ToastProvider>
+        <AuthProvider>
+          <ToastProvider>
+            <QueryProvider>
+              <NextUiProvider>
+                <Header />
+                {children}
+                <Footer />
+              </NextUiProvider>
+            </QueryProvider>
+          </ToastProvider>
+        </AuthProvider>
       </body>
     </html>
   );

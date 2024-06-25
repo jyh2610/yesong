@@ -1,9 +1,10 @@
 'use client';
-import { Checkbox } from '@nextui-org/checkbox';
-import { Button, Radio } from '@nextui-org/react';
+import { Button } from '@nextui-org/react';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { useEffect } from 'react';
+import { useAuth } from '@/app/_providers/AuthProvider';
 import { initialData, usePostData } from './hooks/usePostData';
-import { IPostData, PostState } from './type';
+import { PostState } from './type';
 import { ListWithTitle } from './ui/ListWithTitle';
 import { ReactQuillEditor } from './ui/ReactQuillEditor';
 
@@ -24,7 +25,11 @@ export function WritePost() {
       return newFiles;
     });
   };
+  const { isLogin } = useAuth();
 
+  useEffect(() => {
+    !isLogin && router.push('/');
+  }, []);
   return (
     <>
       <ul className="w-full">
@@ -82,12 +87,13 @@ export function WritePost() {
             onChange={e => handleFileChange(0, e.target.files?.[0] ?? null)}
             placeholder="파일을 선택하세요."
           />
-          {uploadImage.map((file, index) => (
-            <div key={index}>
-              <span>{file?.name}</span>
-              <button>삭제</button>
-            </div>
-          ))}
+          {uploadImage.length > 0 &&
+            uploadImage.map((file, index) => (
+              <div key={index}>
+                <span>{file?.name}</span>
+                <button>삭제</button>
+              </div>
+            ))}
           {postData.files &&
             postData.files.map((file, index) => (
               <div key={index}>

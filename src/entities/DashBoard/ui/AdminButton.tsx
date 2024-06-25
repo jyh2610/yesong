@@ -1,8 +1,7 @@
 'use client';
 
 import { usePathname, useRouter } from 'next/navigation';
-import { useEffect, useState } from 'react';
-import { tokenController } from '@/shared';
+import { useAuth } from '@/app/_providers/AuthProvider';
 import { menuMapping } from '../constant';
 
 type MenuMappingKeys = keyof typeof menuMapping;
@@ -10,17 +9,10 @@ function AdminButton() {
   const router = useRouter();
   const pathname = usePathname();
   const segments = pathname.split('/');
-
+  const { isLogin } = useAuth();
   const lastSegment = segments[segments.length - 1] as MenuMappingKeys;
-  const [hasAccessToken, setHasAccessToken] = useState(false);
 
-  useEffect(() => {
-    if (tokenController.getAccessToken() !== undefined) {
-      setHasAccessToken(true);
-    }
-  }, []);
-
-  if (!hasAccessToken) {
+  if (!isLogin) {
     return null;
   }
 
