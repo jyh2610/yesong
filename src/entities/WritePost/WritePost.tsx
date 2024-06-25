@@ -25,11 +25,7 @@ export function WritePost() {
       return newFiles;
     });
   };
-  const { isLogin } = useAuth();
 
-  useEffect(() => {
-    !isLogin && router.push('/');
-  }, []);
   return (
     <>
       <ul className="w-full">
@@ -49,7 +45,7 @@ export function WritePost() {
         </ListWithTitle>
         <ListWithTitle title="내용">
           <div className="w-full h-[360px] p-2">
-            <ReactQuillEditor setPostData={setPostData} />
+            <ReactQuillEditor postData={postData} setPostData={setPostData} />
           </div>
         </ListWithTitle>
         <ListWithTitle title="링크 #1">

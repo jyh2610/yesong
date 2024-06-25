@@ -9,10 +9,14 @@ const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
 // Define the props for the editor component
 interface ReactQuillEditorProps {
+  postData: PostState;
   setPostData: Dispatch<SetStateAction<PostState>>;
 }
 
-export function ReactQuillEditor({ setPostData }: ReactQuillEditorProps) {
+export function ReactQuillEditor({
+  postData,
+  setPostData
+}: ReactQuillEditorProps) {
   const modules = {
     toolbar: [
       [{ size: ['small', false, 'large', 'huge'] }],
@@ -33,6 +37,7 @@ export function ReactQuillEditor({ setPostData }: ReactQuillEditorProps) {
     <ReactQuill
       modules={modules}
       style={{ width: '100%', height: '300px' }}
+      value={postData.content ? postData.content : ''}
       onChange={content =>
         setPostData(prev => ({
           ...prev,
