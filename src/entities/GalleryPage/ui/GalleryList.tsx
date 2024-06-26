@@ -1,9 +1,9 @@
 'use client';
 
 import { Image, Pagination } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
 import { useState } from 'react';
 import { useGetGalleryList } from '../apis';
-import { useRouter } from 'next/navigation';
 
 const showPerPage = 12;
 
