@@ -9,11 +9,12 @@ export class tokenController {
   static setTokens({ accessToken, refreshToken }: IToken) {
     setCookie('accessToken', accessToken, {
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict'
+      sameSite: 'strict',
+      maxAge: 30 * 60
     });
     setCookie('refreshToken', refreshToken, {
       sameSite: 'strict',
-      maxAge: 7 * 24 * 60 * 60 // 7 days
+      maxAge: 24 * 60 * 60
     });
   }
 
