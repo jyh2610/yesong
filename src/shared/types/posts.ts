@@ -10,7 +10,7 @@ export interface IGetPost {
   content: string;
   category: string;
   links: string[];
-  files: [IFile, IFile];
+  files: IFile[];
   author: string;
   createdAt: string;
   updatedAt: string;

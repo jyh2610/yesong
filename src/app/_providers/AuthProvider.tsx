@@ -46,7 +46,6 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
       }
     };
 
-    // Initial check
     checkTokens();
   }, []);
 
