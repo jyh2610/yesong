@@ -8,7 +8,7 @@ import React, {
   ReactNode,
   useMemo
 } from 'react';
-import { tokenController } from '@/shared'; // tokenController는 앞서 설명한 것처럼 쿠키 관리
+import { postRefreshAuthToken, tokenController } from '@/shared'; // tokenController는 앞서 설명한 것처럼 쿠키 관리
 
 type ContextType = {
   isLogin: boolean;
@@ -24,8 +24,30 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
-    const token = tokenController.getAccessToken();
-    token ? setIsLogin(true) : setIsLogin(false);
+    const checkTokens = () => {
+      const token = tokenController.getAccessToken();
+      const refreshToken = tokenController.getRefreshToken();
+
+      if (!token && refreshToken) {
+        postRefreshAuthToken(refreshToken)
+          .then(newTokens => {
+            if (newTokens) {
+              tokenController.setTokens(newTokens);
+              setIsLogin(true);
+            } else {
+              setIsLogin(false);
+            }
+          })
+          .catch(() => {
+            setIsLogin(false);
+          });
+      } else {
+        setIsLogin(!!token);
+      }
+    };
+
+    // Initial check
+    checkTokens();
   }, []);
 
   return (

@@ -1,3 +1,4 @@
+import { CookieValueTypes } from 'cookies-next';
 import { axiosInstance } from '.';
 
 export interface IGetTokenResponseData {
@@ -5,7 +6,7 @@ export interface IGetTokenResponseData {
   refreshToken: string;
 }
 
-export const postRefreshAuthToken = async (refreshToken: string) => {
+export const postRefreshAuthToken = async (refreshToken: CookieValueTypes) => {
   try {
     const res = await axiosInstance.post<IGetTokenResponseData>('/api/token', {
       refreshToken

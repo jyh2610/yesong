@@ -9,11 +9,9 @@ export class tokenController {
   static setTokens({ accessToken, refreshToken }: IToken) {
     setCookie('accessToken', accessToken, {
       secure: process.env.NODE_ENV === 'production',
-      sameSite: 'strict',
-      maxAge: 7 * 24 * 60 * 60 // 7 days
+      sameSite: 'strict'
     });
     setCookie('refreshToken', refreshToken, {
-      secure: process.env.NODE_ENV === 'production',
       sameSite: 'strict',
       maxAge: 7 * 24 * 60 * 60 // 7 days
     });

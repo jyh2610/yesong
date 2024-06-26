@@ -18,3 +18,5 @@ export { formatYYYYMMDD } from './utils/formatDate';
 //type
 export type { IPostRes } from './types/login';
 export type { IGetPost, IGetPostData } from './types/posts';
+
+export { postRefreshAuthToken } from './APIs/getRefreshToken';
