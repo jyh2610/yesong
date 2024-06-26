@@ -62,7 +62,10 @@ export function SideMenu() {
           <div key={index}>
             <p
               className={`py-2 cursor-pointer ${menu === activeMenuKey ? 'text-brand-600' : 'text-font-gray'}`}
-              onClick={() => router.push(generatePath(menu))}
+              onClick={() => {
+                console.log(menu);
+                router.push(generatePath(menu));
+              }}
             >
               {menu}
             </p>
