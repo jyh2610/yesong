@@ -38,7 +38,7 @@ export function DashBoard() {
       <AdminButton />
       <Table
         aria-label="table"
-        selectionMode={undefined}
+        selectionMode={'single'}
         selectionBehavior={'toggle'}
         onRowAction={key =>
           route.push(`/sub_page/detail/${menuMapping[lastSegment]}/${key}`)
