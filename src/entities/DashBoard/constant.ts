@@ -1,9 +1,5 @@
 export const columns = [
   {
-    key: 'id',
-    label: '번호'
-  },
-  {
     key: 'title',
     label: '제목'
   },
