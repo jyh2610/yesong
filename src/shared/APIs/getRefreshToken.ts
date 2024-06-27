@@ -3,7 +3,6 @@ import { axiosInstance } from '.';
 
 export interface IGetTokenResponseData {
   accessToken: string;
-  refreshToken: string;
 }
 
 export const postRefreshAuthToken = async (refreshToken: CookieValueTypes) => {

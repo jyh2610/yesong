@@ -18,6 +18,14 @@ export class tokenController {
     });
   }
 
+  static setAccessToken(accessToken: string) {
+    setCookie('accessToken', accessToken, {
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
+      maxAge: 30 * 60
+    });
+  }
+
   static clearTokens() {
     deleteCookie('accessToken');
     deleteCookie('refreshToken');

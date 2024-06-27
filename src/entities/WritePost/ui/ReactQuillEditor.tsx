@@ -38,12 +38,13 @@ export function ReactQuillEditor({
       modules={modules}
       style={{ width: '100%', height: '300px' }}
       value={postData.content ? postData.content : ''}
-      onChange={content =>
+      onChange={content => {
+        console.log(content);
         setPostData(prev => ({
           ...prev,
           content: content
-        }))
-      }
+        }));
+      }}
     />
   );
 }

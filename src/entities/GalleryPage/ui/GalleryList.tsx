@@ -24,7 +24,7 @@ export function GalleryList() {
           data.content.map(file => (
             <div
               className=" w-52 h-52 flex justify-center items-center bg-slate-500 rounded-xl"
-              key={file.files[0].fileName}
+              key={file.files[0]?.fileName}
               onClick={() =>
                 route.push(`/sub_page/detail/GALLERY_GALLERY/${file.id}`)
               }
@@ -34,7 +34,7 @@ export function GalleryList() {
                 width="100%"
                 height="100%"
                 alt="gallery image"
-                src={file.files[0].fileURL}
+                src={file.files[0]?.fileURL}
                 className="object-contain w-full h-full"
               />
             </div>

@@ -37,7 +37,10 @@ const handleAxiosError = async (error: AxiosError) => {
 
   const originalRequest = error.config as CustomAxiosRequestConfig;
 
-  if (error.response?.status === 401 && !originalRequest._retry) {
+  if (
+    (error.response?.status === 401 || error.response?.status === 403) &&
+    !originalRequest._retry
+  ) {
     originalRequest._retry = true;
 
     try {
@@ -45,10 +48,7 @@ const handleAxiosError = async (error: AxiosError) => {
       if (refreshToken) {
         const response = await postRefreshAuthToken(refreshToken);
         if (response) {
-          tokenController.setTokens({
-            accessToken: response.accessToken,
-            refreshToken: response.refreshToken
-          });
+          tokenController.setAccessToken(response.accessToken);
           axiosInstance.defaults.headers.common['Authorization'] =
             `Bearer ${response.accessToken}`;
           originalRequest.headers = originalRequest.headers || {};
