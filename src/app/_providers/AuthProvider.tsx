@@ -32,7 +32,7 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
         postRefreshAuthToken(refreshToken)
           .then(newTokens => {
             if (newTokens) {
-              tokenController.setAccessToken(newTokens);
+              tokenController.setAccessToken(newTokens.accessToken);
               setIsLogin(true);
             } else {
               setIsLogin(false);
