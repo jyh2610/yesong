@@ -52,10 +52,9 @@ export function WritePost() {
   };
   const dashBoardPostHandler = async () => {
     try {
-      await postQuillImage();
-      console.log(postData);
+      postQuillImage();
 
-      await postDashBoardHandler();
+      postDashBoardHandler();
     } catch (error) {
       console.error('Error posting dashboard:', error);
     }
