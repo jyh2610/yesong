@@ -16,3 +16,7 @@ export interface PostState {
   category: string;
   files: IFile[];
 }
+
+export interface IPostImage {
+  photoUrl: string;
+}

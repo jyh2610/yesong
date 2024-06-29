@@ -14,6 +14,8 @@ export { getFullPath } from './utils/getFullPath';
 export { tokenController } from './utils/tokenController';
 export { generateFormData } from './utils/generateFormdata';
 export { formatYYYYMMDD } from './utils/formatDate';
+export { formatMultiform } from './utils/formatMultiform';
+export { replaceHTML } from './utils/replaceHTML';
 
 //type
 export type { IPostRes } from './types/login';

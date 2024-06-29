@@ -1,6 +1,7 @@
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { formatMultiform } from '@/shared';
 import request from '@/shared/APIs';
-import { PostState } from '../type';
+import { IPostImage, PostState } from '../type';
 
 export const postDashBoard = async (
   params: PostState,
@@ -62,4 +63,16 @@ export const usePostDashboard = (
       console.error('Mutation failed:', error);
     }
   });
+};
+
+export const uploadEditorImage = async (images: File[]) => {
+  const res = await request<IPostImage>({
+    method: 'POST',
+    url: '/api/posts/s3/upload/photo',
+    headers: {
+      'Content-Type': 'multipart/form-data'
+    },
+    data: formatMultiform(images)
+  });
+  return res.data;
 };

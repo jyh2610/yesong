@@ -1,8 +1,12 @@
 'use client';
+
 import { Button } from '@nextui-org/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { replaceHTML } from '@/shared';
+import { uploadEditorImage } from './api';
 import { initialData, usePostData } from './hooks/usePostData';
-import { PostState } from './type';
+import { useUploadContentImg } from './hooks/useUploadContentImg';
 import { ListWithTitle } from './ui/ListWithTitle';
 import { ReactQuillEditor } from './ui/ReactQuillEditor';
 
@@ -17,6 +21,45 @@ export function WritePost() {
     removeUploadImage
   } = usePostData();
   const router = useRouter();
+  const { quillRef } = useUploadContentImg();
+  const [quillUploadImage, setQuillUploadImage] = useState<File[]>([]);
+
+  const postQuillImage = async () => {
+    try {
+      const results = await Promise.allSettled(
+        quillUploadImage.map(image => uploadEditorImage([image]))
+      );
+
+      const uploadedImageUrls: string[] = [];
+      results.forEach(result => {
+        if (result.status === 'fulfilled') {
+          uploadedImageUrls.push(result.value.photoUrl);
+        } else {
+          console.error('Error uploading image:', result.reason);
+        }
+      });
+      const editor = quillRef.current?.getEditor();
+      const content = postData.content;
+      const updateContent = replaceHTML(content, uploadedImageUrls);
+
+      setPostData(prev => ({
+        ...prev,
+        content: updateContent
+      }));
+    } catch (error) {
+      console.error('Error uploading images:', error);
+    }
+  };
+  const dashBoardPostHandler = async () => {
+    try {
+      await postQuillImage();
+      console.log(postData);
+
+      await postDashBoardHandler();
+    } catch (error) {
+      console.error('Error posting dashboard:', error);
+    }
+  };
 
   const handleFileChange = (file: File) => {
     setUploadImage(prev => [...prev, file]);
@@ -41,7 +84,11 @@ export function WritePost() {
         </ListWithTitle>
         <ListWithTitle title="내용">
           <div className="w-full h-[360px] p-2">
-            <ReactQuillEditor postData={postData} setPostData={setPostData} />
+            <ReactQuillEditor
+              setQuillUploadImage={setQuillUploadImage}
+              postData={postData}
+              setPostData={setPostData}
+            />
           </div>
         </ListWithTitle>
         <ListWithTitle title="링크 #1">
@@ -62,7 +109,7 @@ export function WritePost() {
           <input
             value={postData.links[1] || ''}
             onChange={e =>
-              setPostData((prev: PostState) => ({
+              setPostData(prev => ({
                 ...prev,
                 links: [prev.links[0], e.target.value]
               }))
@@ -105,7 +152,7 @@ export function WritePost() {
         >
           취소하기
         </Button>
-        <Button color="success" onClick={postDashBoardHandler}>
+        <Button color="success" onClick={dashBoardPostHandler}>
           등록하기
         </Button>
       </div>
