@@ -23,7 +23,7 @@ export function GalleryList() {
         {data &&
           data.content.map(file => (
             <div
-              className=" w-52 h-52 flex justify-center items-center bg-slate-500 rounded-xl"
+              className=" w-52 h-52 flex justify-center items-center bg-slate-500 rounded-xl hover:cursor-pointer"
               key={file.files[0]?.fileName}
               onClick={() =>
                 route.push(`/sub_page/detail/GALLERY_GALLERY/${file.id}`)
