@@ -15,11 +15,11 @@ export function GalleryList() {
   const route = useRouter();
 
   if (!data || data.content.length === 0) {
-    return <div>이미지가 없습니다.</div>;
+    return <p>이미지가 없습니다.</p>;
   }
   return (
-    <>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+    <div className="mt-10 mx-auto">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5">
         {data &&
           data.content.map(file => (
             <div
@@ -40,15 +40,17 @@ export function GalleryList() {
             </div>
           ))}
       </div>
-      <Pagination
-        isCompact
-        showControls
-        showShadow
-        color="secondary"
-        page={page}
-        total={pages}
-        onChange={page => setPage(page)}
-      />
-    </>
+      <div className="w-full mt-6 flex justify-center">
+        <Pagination
+          isCompact
+          showControls
+          showShadow
+          color="secondary"
+          page={page}
+          total={pages}
+          onChange={page => setPage(page)}
+        />
+      </div>
+    </div>
   );
 }
