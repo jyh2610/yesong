@@ -43,6 +43,20 @@ const config: Config = {
       }
     }
   },
-  plugins: [nextui()]
+  plugins: [
+    nextui({
+      layout: {},
+      themes: {
+        light: {
+          colors: {
+            secondary: {
+              DEFAULT: '#E33A9F'
+            }
+          }
+        },
+        dark: {}
+      }
+    })
+  ]
 };
 export default config;

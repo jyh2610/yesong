@@ -24,8 +24,8 @@ export function Card({ card }: { card: string[] }) {
         <FullImage src={card[0]} altContent={'카드 이미지'} />
       </div>
       <div className="text-center">
-        <p className="mb-4 font-normal text-2xl">{card[1]}</p>
-        <div className="text-lg leading-[25px]">{card[2]}</div>
+        <p className="mb-4 font-normal text-2xl text-gray-900">{card[1]}</p>
+        <div className="text-lg leading-[25px] text-gray-800">{card[2]}</div>
       </div>
     </div>
   );

@@ -85,7 +85,7 @@ export function LoginModal() {
                   autoFocus
                   value={id}
                   onChange={e => setId(e.target.value)}
-                  label="id"
+                  label="ID"
                   placeholder="아이디를 입력하세요."
                   variant="bordered"
                 />
@@ -99,17 +99,22 @@ export function LoginModal() {
                 />
               </ModalBody>
               <ModalFooter>
-                <Button color="danger" variant="flat" onPress={onClose}>
-                  닫기
-                </Button>
-                <Button
-                  color="primary"
-                  onClick={() => {
-                    postLoginUserData(onClose);
-                  }}
-                >
-                  로그인
-                </Button>
+                <div className="w-full h-11 flex justify-between gap-3 font-normal text-base leading-5 text-white">
+                  <button
+                    className="w-full rounded-xl bg-gray-500"
+                    onClick={onClose}
+                  >
+                    닫기
+                  </button>
+                  <button
+                    className="w-full rounded-xl bg-brand-500"
+                    onClick={() => {
+                      postLoginUserData(onClose);
+                    }}
+                  >
+                    로그인
+                  </button>
+                </div>
               </ModalFooter>
             </>
           )}

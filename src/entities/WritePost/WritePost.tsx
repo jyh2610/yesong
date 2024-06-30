@@ -151,7 +151,7 @@ export function WritePost() {
         >
           취소하기
         </Button>
-        <Button color="success" onClick={dashBoardPostHandler}>
+        <Button color="secondary" onClick={dashBoardPostHandler}>
           등록하기
         </Button>
       </div>
