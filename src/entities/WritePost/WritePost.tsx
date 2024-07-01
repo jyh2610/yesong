@@ -56,8 +56,8 @@ export function WritePost() {
 
   const dashBoardPostHandler = async () => {
     try {
-      const content = await postQuillImage(); // postQuillImage가 완료될 때까지 기다림
-      await postDashBoardHandler(content); // postQuillImage가 완료된 후 실행됨
+      const content = await postQuillImage();
+      await postDashBoardHandler(content || '');
     } catch (error) {
       console.error('Error posting dashboard:', error);
     }
