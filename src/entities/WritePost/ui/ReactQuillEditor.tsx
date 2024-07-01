@@ -28,6 +28,7 @@ export function ReactQuillEditor({
   setQuillUploadImage
 }: ReactQuillEditorProps) {
   const { quillRef } = useUploadContentImg();
+
   const imageHandler = () => {
     const input = document.createElement('input');
     input.setAttribute('type', 'file');
@@ -54,6 +55,7 @@ export function ReactQuillEditor({
       }
     };
   };
+
   const modules = useMemo(
     () => ({
       toolbar: {

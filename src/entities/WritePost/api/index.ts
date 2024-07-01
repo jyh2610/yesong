@@ -5,6 +5,7 @@ import { IPostImage, PostState } from '../type';
 
 export const postDashBoard = async (
   params: PostState,
+  content: string,
   image: (File | null)[],
   postId?: string
 ) => {
@@ -13,14 +14,14 @@ export const postDashBoard = async (
   const formatData = !postId
     ? {
         title: params.title,
-        content: params.content,
+        content: content,
         category: params.category,
         links: params.links
       }
     : {
         id: postId,
         title: params.title,
-        content: params.content,
+        content: content,
         category: params.category,
         links: params.links
       };
@@ -48,11 +49,12 @@ export const postDashBoard = async (
 
 export const usePostDashboard = (
   params: PostState,
+  content: string,
   image: (File | null)[],
   postId: string
 ) => {
   const queryClient = useQueryClient();
-  const mutationFn = () => postDashBoard(params, image);
+  const mutationFn = () => postDashBoard(params, content, image);
 
   return useMutation({
     mutationFn,

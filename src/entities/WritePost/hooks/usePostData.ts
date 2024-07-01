@@ -20,6 +20,7 @@ export function usePostData() {
   const [postData, setPostData] = useState<PostState>(initialData);
   const [uploadImage, setUploadImage] = useState<File[]>([]);
   const existingImgId = postData.files.map(file => file?.id);
+  console.log(postData);
 
   const { showToast } = useToast();
 
@@ -58,11 +59,11 @@ export function usePostData() {
     }));
   }, [lastSegment]);
 
-  const postDashBoardHandler = async () => {
+  const postDashBoardHandler = async (content: string) => {
     try {
       postId
-        ? await postDashBoard(postData, uploadImage, postId)
-        : await postDashBoard(postData, uploadImage);
+        ? await postDashBoard(postData, content, uploadImage, postId)
+        : await postDashBoard(postData, content, uploadImage);
       setPostData(initialData);
       setUploadImage([]);
       showToast({
