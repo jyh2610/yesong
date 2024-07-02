@@ -20,7 +20,6 @@ export function usePostData() {
   const [postData, setPostData] = useState<PostState>(initialData);
   const [uploadImage, setUploadImage] = useState<File[]>([]);
   const existingImgId = postData.files.map(file => file?.id);
-  console.log(postData);
 
   const { showToast } = useToast();
 
