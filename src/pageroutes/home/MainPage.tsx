@@ -10,7 +10,7 @@ export function MainPage() {
       <div className="max-w-[1360px] mx-auto">
         <MainCard />
         <Redirect />
-        {/* <Notice /> */}
+        <Notice />
       </div>
       <Gallery />
     </div>
