@@ -24,9 +24,9 @@ export function Dropdown({ setIsOpen }: Props) {
   return (
     <div
       onMouseLeave={() => setIsOpen(false)}
-      className="absolute p-4 w-full bg-white z-50 flex justify-center"
+      className="absolute py-4 w-full bg-white z-50 flex justify-center"
     >
-      <div className="w-[1360px]">
+      <div className="w-full">
         <div className="flex justify-between m-auto">
           <div className="w-[300px] h-14 relative" />
           <ul className="w-2/3 h-full flex justify-between items-start">

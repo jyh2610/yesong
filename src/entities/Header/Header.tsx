@@ -10,7 +10,7 @@ export function Header() {
 
   return (
     <div className="relative pb-2">
-      <div className="w-[1360px] mx-auto">
+      <div className="w-full mx-auto">
         <div className="flex justify-between items-end pt-2">
           <Link href={PATH.HOME}>
             <div className="w-[300px] h-14 relative m-auto">

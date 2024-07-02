@@ -1,9 +1,8 @@
 'use client';
 
-import Link from 'next/link';
+import { Image } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import React, { useState } from 'react';
-import { FullImage } from '@/shared';
 import { ListType } from '../types';
 
 type RedirectListProps = {
@@ -33,13 +32,7 @@ export function RedirectList({ data, line }: RedirectListProps) {
         ></p>
       </div>
       <div>
-        <div className="relative w-48 h-20">
-          <FullImage
-            src={data.img}
-            altContent={'리다이렉트 로고'}
-            quality={100}
-          />
-        </div>
+        <Image width={'full'} alt="redirect logo" src={data.img} />
       </div>
     </div>
   );
