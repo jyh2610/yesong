@@ -37,29 +37,24 @@ const handleAxiosError = async (error: AxiosError) => {
 
   const originalRequest = error.config as CustomAxiosRequestConfig;
 
-  if (
-    (error.response?.status === 401 || error.response?.status === 403) &&
-    !originalRequest._retry
-  ) {
-    originalRequest._retry = true;
-
+  if (error.response?.status === 401) {
     try {
       const refreshToken = tokenController.getRefreshToken();
+      if (!refreshToken) tokenController.clearTokens();
       if (refreshToken) {
-        const response = await postRefreshAuthToken(refreshToken);
-        if (response) {
-          tokenController.setAccessToken(response.accessToken);
-          axiosInstance.defaults.headers.common['Authorization'] =
-            `Bearer ${response.accessToken}`;
-          originalRequest.headers = originalRequest.headers || {};
-          originalRequest.headers['Authorization'] =
-            `Bearer ${response.accessToken}`;
-        }
+        // const response = await postRefreshAuthToken(refreshToken);
+        // if (response) {
+        //   tokenController.setAccessToken(response.accessToken);
+        //   axiosInstance.defaults.headers.common['Authorization'] =
+        //     `Bearer ${response.accessToken}`;
+        //   originalRequest.headers = originalRequest.headers || {};
+        //   originalRequest.headers['Authorization'] =
+        //     `Bearer ${response.accessToken}`;
+        // }
         return axiosInstance(originalRequest);
       }
     } catch (refreshError) {
       console.error('Token refresh error:', refreshError);
-      // Refresh token is invalid or expired, handle logout
       tokenController.clearTokens();
       return Promise.reject(refreshError);
     }

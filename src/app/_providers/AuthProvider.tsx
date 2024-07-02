@@ -24,10 +24,9 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   const [isLogin, setIsLogin] = useState<boolean>(false);
 
   useEffect(() => {
+    const token = tokenController.getAccessToken();
+    const refreshToken = tokenController.getRefreshToken();
     const checkTokens = () => {
-      const token = tokenController.getAccessToken();
-      const refreshToken = tokenController.getRefreshToken();
-
       if (!token && refreshToken) {
         postRefreshAuthToken(refreshToken)
           .then(newTokens => {
@@ -36,17 +35,20 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
               setIsLogin(true);
             } else {
               setIsLogin(false);
+              tokenController.clearTokens();
             }
           })
           .catch(() => {
             setIsLogin(false);
+            tokenController.clearTokens();
           });
       } else {
         setIsLogin(!!token);
+        tokenController.clearTokens();
       }
     };
 
-    checkTokens();
+    refreshToken && checkTokens();
   }, []);
 
   return (

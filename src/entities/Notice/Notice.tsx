@@ -1,7 +1,10 @@
+import { getMainNotice } from '@/entities/Notice/api';
 import { FullImage, IGetPostData } from '@/shared';
 import { NoticeList } from './ui';
 
-export function Notice({ notice }: { notice: IGetPostData }) {
+export async function Notice() {
+  const notice = await getMainNotice();
+
   return (
     <section className="mt-40 px-2 mb-10 relative">
       <p className=" text-5xl font-semibold">공지사항</p>
