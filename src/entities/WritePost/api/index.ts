@@ -7,7 +7,8 @@ export const postDashBoard = async (
   params: PostState,
   content: string,
   image: (File | null)[],
-  postId?: string
+  postId?: string,
+  existingImgId?: string[]
 ) => {
   const formData = new FormData();
 
@@ -37,6 +38,10 @@ export const postDashBoard = async (
     }
   });
 
+  if (existingImgId && existingImgId.length > 0) {
+    formData.append('existingFileIds', JSON.stringify(existingImgId));
+  }
+
   await request({
     method: !postId ? 'POST' : 'PUT',
     headers: {
@@ -51,10 +56,12 @@ export const usePostDashboard = (
   params: PostState,
   content: string,
   image: (File | null)[],
-  postId: string
+  postId?: string,
+  existingImgId?: string[]
 ) => {
   const queryClient = useQueryClient();
-  const mutationFn = () => postDashBoard(params, content, image);
+  const mutationFn = () =>
+    postDashBoard(params, content, image, postId, existingImgId);
 
   return useMutation({
     mutationFn,

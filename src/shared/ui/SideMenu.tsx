@@ -57,8 +57,6 @@ export function SideMenu() {
         {currentMenu?.[0]}
       </p>
       {menuList.map((menu, index) => {
-        console.log(menu);
-
         const child = currentMenu?.[1].children[menu];
         return (
           <div key={index}>

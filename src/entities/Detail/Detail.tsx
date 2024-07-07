@@ -9,6 +9,7 @@ import { RemoteButton } from './ui/RemoteButton';
 export function Detail({ id }: { id: string }) {
   const { isLogin } = useAuth();
   const { data: res } = useGetPostById(id);
+  console.log(res);
 
   if (res === undefined) return null;
   return (
