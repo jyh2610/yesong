@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { IoMdCall } from 'react-icons/io';
 import { pathMapping } from '@/entities/Header/constant';
+import { list, ListKeys } from '../constant/sidemenuList';
 import { RenderSubMenu } from './RenderSubMenu';
 
 export function SideMenu() {
@@ -27,7 +28,7 @@ export function SideMenu() {
         Object.entries(currentMenu[1].children).find(
           ([, value]) => value === `/sub_page/${lastSegment}`
         )?.[0] || '';
-      setActiveMenuKey(foundKey || currentMenu[0]);
+      setActiveMenuKey(lastSegment);
     }
   }, [parentPath, lastSegment]);
 
@@ -35,10 +36,9 @@ export function SideMenu() {
     ([, value]) => value.path === parentPath
   );
 
-  const menuList =
-    currentMenu && currentMenu[1].children
-      ? Object.keys(currentMenu[1].children)
-      : [];
+  const menuList = currentMenu?.[1].children
+    ? Object.keys(currentMenu[1].children)
+    : [];
 
   const generatePath = (menu: string) => {
     const child = currentMenu && currentMenu[1].children[menu];
@@ -57,13 +57,14 @@ export function SideMenu() {
         {currentMenu?.[0]}
       </p>
       {menuList.map((menu, index) => {
+        console.log(menu);
+
         const child = currentMenu?.[1].children[menu];
         return (
           <div key={index}>
             <p
-              className={`py-2 cursor-pointer ${menu === activeMenuKey ? 'text-brand-600' : 'text-font-gray'}`}
+              className={`py-2 cursor-pointer ${menu === list[activeMenuKey as ListKeys] ? 'text-brand-600' : 'text-font-gray'}`}
               onClick={() => {
-                console.log(menu);
                 router.push(generatePath(menu));
               }}
             >

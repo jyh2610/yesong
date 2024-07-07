@@ -78,7 +78,12 @@ export function LoginModal() {
       >
         <ModalContent>
           {onClose => (
-            <>
+            <form
+              onSubmit={e => {
+                e.preventDefault();
+                postLoginUserData(onClose);
+              }}
+            >
               <ModalHeader className="flex flex-col gap-1">로그인</ModalHeader>
               <ModalBody>
                 <Input
@@ -116,7 +121,7 @@ export function LoginModal() {
                   </button>
                 </div>
               </ModalFooter>
-            </>
+            </form>
           )}
         </ModalContent>
       </Modal>
