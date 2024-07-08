@@ -65,7 +65,7 @@ export function WritePost() {
 
       console.log(content);
 
-      await postDashBoardHandler(finalContent || postData.content);
+      await postDashBoardHandler(finalContent || '');
     } catch (error) {
       console.error('Error posting dashboard:', error);
     }
