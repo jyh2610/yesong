@@ -13,6 +13,7 @@ export async function Gallery() {
       <div className="max-w-[1360px] mx-auto">
         <p className=" text-5xl font-semibold  pb-10">갤러리</p>
         <BasicSlider
+          res={res}
           imageUrl={imgArr}
           height={'440px'}
           isNavigation={true}
