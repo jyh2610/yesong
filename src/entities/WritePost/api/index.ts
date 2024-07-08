@@ -5,24 +5,27 @@ import { IPostImage, PostState } from '../type';
 
 export const postDashBoard = async (
   params: PostState,
-  content: string,
+  content: string | undefined,
   image: (File | null)[],
   postId?: string,
   existingImgId?: string[]
 ) => {
   const formData = new FormData();
+  const finalContent = content || params.content;
+
+  console.log(finalContent, params);
 
   const formatData = !postId
     ? {
         title: params.title,
-        content: content,
+        content: finalContent,
         category: params.category,
         links: params.links
       }
     : {
         id: postId,
         title: params.title,
-        content: content,
+        content: finalContent,
         category: params.category,
         links: params.links
       };
@@ -32,7 +35,7 @@ export const postDashBoard = async (
     new Blob([JSON.stringify(formatData)], { type: 'application/json' })
   );
 
-  image.forEach((file, index) => {
+  image.forEach(file => {
     if (file) {
       formData.append('files', file);
     }
@@ -54,7 +57,7 @@ export const postDashBoard = async (
 
 export const usePostDashboard = (
   params: PostState,
-  content: string,
+  content: string | undefined,
   image: (File | null)[],
   postId?: string,
   existingImgId?: string[]

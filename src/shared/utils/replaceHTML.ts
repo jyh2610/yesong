@@ -10,3 +10,18 @@ export const replaceHTML = (htmlString: string, src: string[]) => {
 
   return doc.body.innerHTML;
 };
+
+export const extractSrc = (tag: string): boolean => {
+  let parser = new DOMParser();
+  let doc = parser.parseFromString(tag, 'text/html');
+  let imgElements = doc.querySelectorAll('img');
+  let hasUndefinedSrc = false;
+
+  imgElements.forEach(img => {
+    if (img.getAttribute('src') === 'undefined') {
+      hasUndefinedSrc = true;
+    }
+  });
+
+  return !hasUndefinedSrc;
+};

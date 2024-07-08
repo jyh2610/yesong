@@ -4,6 +4,7 @@ import { Button } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { replaceHTML } from '@/shared';
+import { extractSrc } from '@/shared/utils/replaceHTML';
 import { uploadEditorImage } from './api';
 import { initialData, usePostData } from './hooks/usePostData';
 import { useUploadContentImg } from './hooks/useUploadContentImg';
@@ -42,6 +43,7 @@ export function WritePost() {
         }
       });
       const content = postData.content;
+
       const updatedContent = replaceHTML(content, uploadedImageUrls);
 
       setPostData(prev => ({
@@ -57,7 +59,13 @@ export function WritePost() {
   const dashBoardPostHandler = async () => {
     try {
       const content = await postQuillImage();
-      await postDashBoardHandler(content || '');
+      const finalContent = extractSrc(content || '')
+        ? content
+        : postData.content;
+
+      console.log(content);
+
+      await postDashBoardHandler(finalContent || postData.content);
     } catch (error) {
       console.error('Error posting dashboard:', error);
     }
