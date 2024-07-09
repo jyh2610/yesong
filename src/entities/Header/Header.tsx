@@ -12,11 +12,11 @@ export function Header() {
     <div className="relative pb-2">
       <div className="w-full mx-auto">
         <div className="flex justify-between items-end pt-2">
-          <Link href={PATH.HOME}>
-            <div className="w-[300px] h-14 relative m-auto">
+          <div className="w-[300px] h-14 relative m-auto">
+            <Link href={'/'}>
               <FullImage src="/assets/Logo.png" altContent="메인로고" />
-            </div>
-          </Link>
+            </Link>
+          </div>
           <div className="w-2/3 flex flex-col justify-end">
             <LoginHeader />
             <div className="relative">
