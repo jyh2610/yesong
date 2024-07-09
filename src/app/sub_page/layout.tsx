@@ -5,7 +5,7 @@ function layout({ children }: { children: ReactNode }) {
   return (
     <div className="pb-40">
       <div className="relative w-full h-52">
-        <FullImage src={'/assets/SideBanner.png'} altContent="" />
+        <FullImage src={'/assets/Banner3.jpeg'} altContent="" />
       </div>
       <div className="max-w-[1360px] mx-auto mt-16 flex gap-28">
         <SideMenu />
