@@ -8,10 +8,10 @@ export function LoginHeader() {
   const loginLists: { [key: string]: React.ReactNode } = {
     홈: (
       <>
-        <Link href="/">
+        <Link href="/" className="flex gap-2">
           <GoHomeFill size={22} />
+          <span className=" text-brandSize font-medium">홈</span>
         </Link>
-        <span className=" text-brandSize font-medium">홈</span>
       </>
     ),
     관리자: (

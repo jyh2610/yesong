@@ -44,6 +44,7 @@ export function BasicSlider({
       {formatLoopSrc.map((url, idx) => (
         <SwiperSlide className="w-full h-full" key={idx}>
           <div
+            className="hover:cursor-pointer"
             onClick={() =>
               route.push(`/sub_page/detail/GALLERY_GALLERY/${url.id}`)
             }

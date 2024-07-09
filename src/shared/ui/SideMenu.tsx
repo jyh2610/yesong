@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { FaLocationDot } from 'react-icons/fa6';
 import { IoMdCall } from 'react-icons/io';
 import { pathMapping } from '@/entities/Header/constant';
+import { companyInfo } from '../constant/companyInfo';
 import { list, ListKeys } from '../constant/sidemenuList';
 import { RenderSubMenu } from './RenderSubMenu';
 
@@ -95,11 +96,11 @@ const Info = () => {
       </div>
       <div className="flex gap-2 mt-5">
         <IoMdCall size={24} color="#FA98D3" />
-        <p className="text-brand-600">010-6219-3680</p>
+        <p className="text-brand-600">{companyInfo.number}</p>
       </div>
       <div className="flex gap-2 mt-3">
         <FaLocationDot size={24} color="#FA98D3" />
-        <p>경기도 성남시 수정구 남문로13번길 17, 102호</p>
+        <p>{companyInfo.address}</p>
       </div>
     </div>
   );
