@@ -1,11 +1,13 @@
+'use client';
+
 import React from 'react';
 import { BasicSlider, IGetPostData } from '@/shared';
-import { getMainGallery } from './api';
+import { getMainGallery, useGetMainGallery } from './api';
 import { extractFileURLs } from './utills';
 
-export async function Gallery() {
-  const res = await getMainGallery();
-
+export function Gallery() {
+  const { data: res } = useGetMainGallery();
+  if (res === undefined) return <div>Loading...</div>;
   const imgArr = extractFileURLs(res);
 
   return (

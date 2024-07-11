@@ -13,7 +13,7 @@ export const getMainGallery = async (): Promise<IGetPostData> => {
 
 export const useGetMainGallery = () => {
   return useQuery<IGetPostData>({
-    queryKey: ['postDataById'],
+    queryKey: ['mainGallery'],
     queryFn: () => getMainGallery()
   });
 };

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useToast } from '@/app/_providers/ToastProvider';
 import { menuMapping } from '@/entities/DashBoard/constant';
 import { getPostById } from '@/entities/Detail/api';
-import { postDashBoard } from '../api';
+import { postDashBoard, usePostDashboard } from '../api';
 import { PostState } from '../type';
 
 export const initialData: PostState = {
@@ -62,14 +62,18 @@ export function usePostData() {
   const postDashBoardHandler = async (content: string) => {
     try {
       postId
-        ? await postDashBoard(
-            postData,
+        ? await postDashBoard({
+            params: postData,
             content,
-            uploadImage,
+            image: uploadImage,
             postId,
             existingImgId
-          )
-        : await postDashBoard(postData, content, uploadImage);
+          })
+        : await postDashBoard({
+            params: postData,
+            content,
+            image: uploadImage
+          });
       setPostData(initialData);
       setUploadImage([]);
       showToast({

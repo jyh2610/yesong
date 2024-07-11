@@ -3,17 +3,23 @@ import { formatMultiform } from '@/shared';
 import request from '@/shared/APIs';
 import { IPostImage, PostState } from '../type';
 
-export const postDashBoard = async (
-  params: PostState,
-  content: string | undefined,
-  image: (File | null)[],
-  postId?: string,
-  existingImgId?: string[]
-) => {
+interface PostDashboardParams {
+  params: PostState;
+  content?: string;
+  image: (File | null)[];
+  postId?: string;
+  existingImgId?: string[];
+}
+
+export const postDashBoard = async ({
+  params,
+  content,
+  image,
+  postId,
+  existingImgId
+}: PostDashboardParams) => {
   const formData = new FormData();
   const finalContent = content || params.content;
-
-  console.log(finalContent, params);
 
   const formatData = !postId
     ? {
@@ -44,7 +50,6 @@ export const postDashBoard = async (
   if (existingImgId && existingImgId.length > 0) {
     formData.append('existingFileIds', JSON.stringify(existingImgId));
   }
-
   await request({
     method: !postId ? 'POST' : 'PUT',
     headers: {
@@ -55,21 +60,25 @@ export const postDashBoard = async (
   });
 };
 
-export const usePostDashboard = (
-  params: PostState,
-  content: string | undefined,
-  image: (File | null)[],
-  postId?: string,
-  existingImgId?: string[]
-) => {
-  const queryClient = useQueryClient();
-  const mutationFn = () =>
-    postDashBoard(params, content, image, postId, existingImgId);
+interface UsePostDashboardParams {
+  params: PostState;
+  content?: string;
+  image: (File | null)[];
+  postId?: string;
+  existingImgId?: string[];
+}
 
-  return useMutation({
+export const usePostDashboard = () => {
+  const queryClient = useQueryClient();
+  const mutationFn = (variables: UsePostDashboardParams) =>
+    postDashBoard(variables);
+
+  return useMutation<void, unknown, UsePostDashboardParams>({
     mutationFn,
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['postDataById'] });
+      queryClient.invalidateQueries({
+        queryKey: ['postDataById', 'mainGallery']
+      });
     },
     onError: (error: unknown) => {
       console.error('Mutation failed:', error);

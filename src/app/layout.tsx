@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import localFont from 'next/font/local';
+import Head from 'next/head';
 import Script from 'next/script';
 import { Footer, Header } from '@/entities';
 import { NextUiProvider, QueryProvider } from './_providers';
@@ -30,6 +31,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
+      <Head>
+        <meta
+          name="google-site-verification"
+          content="eq1o52XaPWMV_0LkJI9A2qgehU2F1u5f0yelKvwLWbc"
+        />
+      </Head>
       <Script
         type="text/javascript"
         src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&autoload=false`}

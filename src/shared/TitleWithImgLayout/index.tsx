@@ -1,8 +1,8 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { menuMapping } from '@/entities/DashBoard/constant';
 import { FullImage } from '@/shared';
+import { UploadButton } from './ui/UploadButton';
 interface Props {
   title: string;
   src: string[];
@@ -17,16 +17,7 @@ export function TitleWithImgLayout({ id, title, src, category }: Props) {
   return (
     <div className="w-full">
       <p className="font-semibold text-5xl">{title}</p>
-      {/* <div className="flex justify-end">
-        <div className="flex gap-2 text-white">
-          <button
-            className="bg-gray-600 rounded-md p-2"
-            onClick={() => router.push(path)}
-          >
-            글쓰기
-          </button>
-        </div>
-      </div> */}
+      <UploadButton path={path} />
       <div className="flex flex-col">
         {src?.map((item, index) => (
           <div key={index} className="relative w-full h-[800px]">
