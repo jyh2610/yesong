@@ -59,3 +59,18 @@ export const useGetSearchPost = ({
     queryFn: () => searchPost({ search, category })
   });
 };
+
+const getSearchId = async (id: number) => {
+  const res = await request<IGetPost>({
+    method: 'GET',
+    url: `/api/posts/${id}`
+  });
+  return res.data;
+};
+
+export const useGetSearchId = (id: number) => {
+  return useQuery<IGetPost, Error>({
+    queryKey: ['searchPostId', id],
+    queryFn: () => getSearchId(id)
+  });
+};

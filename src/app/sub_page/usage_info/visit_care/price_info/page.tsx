@@ -20,7 +20,7 @@ function PriceInfo() {
     <TitleWithImgLayout
       title={'월 한도액 및 본인부담금 안내'}
       src={urlArr}
-      id={id}
+      id={72}
       category={'GUIDE_HOMECARE'}
     />
   );
