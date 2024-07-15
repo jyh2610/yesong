@@ -41,7 +41,7 @@ export function DashBoard() {
         selectionMode={'single'}
         selectionBehavior={'toggle'}
         onRowAction={key =>
-          route.push(`/sub_page/detail/${menuMapping[lastSegment]}/${key}`)
+          route.push(`/sub_page/detail/${lastSegment}/${key}`)
         }
         classNames={{
           base: 'max-h-[520px]',
