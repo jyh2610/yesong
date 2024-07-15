@@ -8,11 +8,14 @@ async function LongTermCare() {
     '/assets/long_term.jpeg',
     '/assets/long_term3.jpeg'
   ];
+
+  const id =
+    res !== undefined && res.content.length > 0 ? res?.content[0].id : null;
   return (
     <TitleWithImgLayout
       title={'노인장기요양보험 안내'}
       src={urlArr}
-      id={null}
+      id={id}
       category={'INSURANCE_INFO'}
     />
   );
