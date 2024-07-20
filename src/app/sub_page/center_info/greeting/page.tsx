@@ -3,6 +3,7 @@ import { FullImage } from '@/shared';
 
 async function Greeting() {
   const res = await getPosts({ page: 0, category: 'CENTER_INTRO' });
+
   return (
     <div className="w-full">
       <p className="font-semibold text-5xl">인사말</p>
