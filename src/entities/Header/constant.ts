@@ -42,8 +42,8 @@ export const pathMapping: { [key: string]: IPathMapping } = {
   커뮤니티: {
     path: '/community',
     children: {
-      공지사항: '/notice',
-      상담신청: '/counsel_request'
+      공지사항: '/notice'
+      // 상담신청: '/counsel_request'
     }
   },
   자료실: {
