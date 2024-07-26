@@ -4,7 +4,7 @@ function Notice() {
   return (
     <>
       <p className="font-semibold text-5xl">공지사항</p>
-      <DashBoard />
+      <DashBoard title="공지사항" />
     </>
   );
 }

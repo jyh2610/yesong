@@ -4,7 +4,7 @@ function HealthInfo() {
   return (
     <>
       <p className="font-semibold text-5xl">건강정보</p>
-      <DashBoard />
+      <DashBoard title="건강정보" />
     </>
   );
 }

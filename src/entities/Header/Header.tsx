@@ -9,7 +9,7 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <div className="relative pb-2">
+    <header className="relative pb-2">
       <div className="w-full mx-auto">
         <div className="flex justify-between items-end pt-2">
           <Link href={'/'}>
@@ -26,6 +26,6 @@ export function Header() {
         </div>
       </div>
       {isOpen && <Dropdown setIsOpen={setIsOpen} />}
-    </div>
+    </header>
   );
 }

@@ -1,7 +1,7 @@
 'use client';
 
 import { Button } from '@nextui-org/react';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { replaceHTML } from '@/shared';
 import { extractSrc } from '@/shared/utils/replaceHTML';
@@ -27,6 +27,9 @@ export function WritePost() {
   const [quillUploadImage, setQuillUploadImage] = useState<File[]>([]);
 
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const searchParams = useSearchParams();
+  const title = searchParams.get('title') || '';
 
   const postQuillImage = async () => {
     try {
@@ -81,6 +84,7 @@ export function WritePost() {
 
   return (
     <>
+      <h1 className="font-semibold text-5xl mb-4">{title}</h1>
       <ul className="w-full">
         <ListWithTitle title="제목">
           <input
@@ -111,7 +115,7 @@ export function WritePost() {
             onChange={e =>
               setPostData(prev => ({
                 ...prev,
-                links: [e.target.value, prev.links[1]]
+                links: [e.target.value, prev.links[1] || '']
               }))
             }
             className="bg-gray-100 w-full p-1"
@@ -125,7 +129,7 @@ export function WritePost() {
             onChange={e =>
               setPostData(prev => ({
                 ...prev,
-                links: [prev.links[0], e.target.value]
+                links: [prev.links[0] || '', e.target.value]
               }))
             }
             className="bg-gray-100 w-full p-1"

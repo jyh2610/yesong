@@ -9,10 +9,11 @@ function layout({ children }: { children: ReactNode }) {
         {/* <FullImage src={'/assets/Banner.jpeg'} altContent="" /> */}
         <Image
           quality={100}
-          src={'/assets/Banner3.jpeg'}
+          src={'/assets/subBanner.jpeg'}
           alt={'subBanner'}
           fill={true}
           sizes="100%, 100%"
+          className="object-cover"
           priority
         />
       </div>

@@ -18,8 +18,10 @@ import AdminButton from './ui/AdminButton';
 
 type MenuMappingKeys = keyof typeof menuMapping;
 const rowsPerPage = 8;
-
-export function DashBoard() {
+interface DashBoardProps {
+  title: string;
+}
+export const DashBoard = ({ title }: DashBoardProps) => {
   const route = useRouter();
   const pathname = usePathname();
   const segments = pathname.split('/');
@@ -35,7 +37,7 @@ export function DashBoard() {
 
   return (
     <div className="mt-10 flex flex-col gap-3">
-      <AdminButton />
+      <AdminButton title={title} />
       <Table
         aria-label="table"
         selectionMode={'single'}
@@ -80,4 +82,4 @@ export function DashBoard() {
       </Table>
     </div>
   );
-}
+};

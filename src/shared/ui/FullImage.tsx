@@ -13,7 +13,7 @@ export function FullImage({ src, altContent, quality }: Props) {
       src={src}
       alt={altContent}
       fill={true}
-      className="object-contain"
+      className="object-fill"
       sizes="100%, 100%"
       priority
     />

@@ -22,7 +22,7 @@ export function LoginHeader() {
     )
   };
   return (
-    <ul className="w-full flex justify-end gap-10 mt-5">
+    <ul className="w-full flex justify-end gap-10 mt-5 ">
       {Object.entries(loginLists).map(([item, icon]) => (
         <li
           key={item}

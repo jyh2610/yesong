@@ -15,6 +15,7 @@ async function LongTermCare() {
     <TitleWithImgLayout
       title={'노인장기요양보험 안내'}
       src={urlArr}
+      link={res.content[0].links}
       id={id}
       category={'INSURANCE_INFO'}
     />

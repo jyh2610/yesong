@@ -24,7 +24,9 @@ export const pathMapping: { [key: string]: IPathMapping } = {
   요양보험안내: {
     path: '/long_term_care',
     children: {
-      요양보험안내: ''
+      요양보험안내: '',
+      노인장기요양보험제도: '/service_explain',
+      인정절차: '/care_steps'
     }
   },
   이용안내: {

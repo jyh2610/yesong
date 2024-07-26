@@ -4,7 +4,7 @@ function CounselRequest() {
   return (
     <>
       <p className="font-semibold text-5xl">상담신청</p>
-      <DashBoard />
+      <DashBoard title={'상담신청'} />
     </>
   );
 }

@@ -20,6 +20,7 @@ export function Detail({ id }: { id: string }) {
             <p>작성자</p>
             <p className="font-semibold">{res.author}</p>
           </div>
+
           <p>{formatYYYYMMDD(res.createdAt)}</p>
           <div className="flex gap-2">
             <p>조회</p>
@@ -27,23 +28,28 @@ export function Detail({ id }: { id: string }) {
           </div>
         </div>
       </div>
-      <Divider className="my-4" />
+      <Divider className="mt-4" />
+      <div className="bg-gray-50 gap-3">
+        {res.links.map((link, index) => (
+          <a
+            key={index}
+            href={`https://${link}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-700"
+          >
+            <p>{link}</p>
+          </a>
+        ))}
+      </div>
+      <Divider className="" />
 
       {isLogin && <RemoteButton id={id} category={res.category} />}
       <div
         className="mt-10"
         dangerouslySetInnerHTML={{ __html: res.content }}
       />
-      {res.links.map((link, index) => (
-        <a
-          key={index}
-          href={`https://${link}`}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <p>{link}</p>
-        </a>
-      ))}
+
       {res.files.map((file, index) => (
         <div key={index} className="relative w-full h-[800px]">
           <FullImage src={file.fileURL} altContent="게시판 이미지" />

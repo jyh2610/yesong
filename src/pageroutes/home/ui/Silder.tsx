@@ -4,8 +4,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FullImage } from '@/shared';
 
 const bannerImg = [
-  '/assets/Banner.jpeg',
-  '/assets/Banner2.jpeg',
+  '/assets/1980.png',
+  '/assets/2-1.jpg',
   '/assets/Banner3.jpeg'
 ];
 
