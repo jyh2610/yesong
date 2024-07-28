@@ -5,6 +5,7 @@ import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
 import { useToast } from '@/app/_providers/ToastProvider';
 import { replaceHTML } from '@/shared';
+import { list, ListKeys } from '@/shared/constant/sidemenuList';
 import { extractSrc } from '@/shared/utils/replaceHTML';
 import { uploadEditorImage } from './api';
 import { initialData, usePostData } from './hooks/usePostData';
@@ -12,7 +13,6 @@ import { useUploadContentImg } from './hooks/useUploadContentImg';
 import { ListWithTitle } from './ui/ListWithTitle';
 import { ReactQuillEditor } from './ui/ReactQuillEditor';
 import { formatFileSize } from './utills';
-import { list, ListKeys } from '@/shared/constant/sidemenuList';
 
 export function WritePost() {
   const {
