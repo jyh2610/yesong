@@ -12,6 +12,7 @@ import { useUploadContentImg } from './hooks/useUploadContentImg';
 import { ListWithTitle } from './ui/ListWithTitle';
 import { ReactQuillEditor } from './ui/ReactQuillEditor';
 import { formatFileSize } from './utills';
+import { list, ListKeys } from '@/shared/constant/sidemenuList';
 
 export function WritePost() {
   const {
@@ -28,7 +29,7 @@ export function WritePost() {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const { showToast } = useToast();
   const searchParams = useSearchParams();
-  const title = searchParams.get('title') || '';
+  const title = (searchParams.get('title') as ListKeys) || '';
 
   const postQuillImage = async () => {
     try {
@@ -98,7 +99,7 @@ export function WritePost() {
 
   return (
     <>
-      <h1 className="font-semibold text-5xl mb-4">{title}</h1>
+      <h1 className="font-semibold text-5xl mb-4">{list[title]}</h1>
       <ul className="w-full">
         <ListWithTitle title="제목">
           <input

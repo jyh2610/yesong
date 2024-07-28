@@ -9,16 +9,18 @@ import { deletePost } from '../api';
 
 export function RemoteButton({
   id,
-  category
+  category,
+  title
 }: {
   id: string;
   category: string;
+  title: string;
 }) {
   const { showToast } = useToast();
   const router = useRouter();
 
   const handleNavigation = () => {
-    router.push(`/write/${category}?postId=${id}`);
+    router.push(`/write/${category}?postId=${id}&title=${title}`);
   };
   const [isLogin, setIsLogin] = useState(false);
 

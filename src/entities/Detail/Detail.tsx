@@ -6,7 +6,7 @@ import { FullImage, IGetPost, formatYYYYMMDD } from '@/shared';
 import { useGetPostById } from './api';
 import { RemoteButton } from './ui/RemoteButton';
 
-export function Detail({ id }: { id: string }) {
+export function Detail({ id, category }: { id: string; category: string }) {
   const { isLogin } = useAuth();
   const { data: res } = useGetPostById(id);
 
@@ -44,7 +44,9 @@ export function Detail({ id }: { id: string }) {
       </div>
       <Divider className="" />
 
-      {isLogin && <RemoteButton id={id} category={res.category} />}
+      {isLogin && (
+        <RemoteButton id={id} category={res.category} title={category} />
+      )}
       <div
         className="mt-10"
         dangerouslySetInnerHTML={{ __html: res.content }}

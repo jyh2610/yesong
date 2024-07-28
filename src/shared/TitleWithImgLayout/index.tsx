@@ -18,7 +18,9 @@ export function TitleWithImgLayout({ id, src, title, link, category }: Props) {
   const router = useRouter();
   const { data } = useGetSearchId(id || 0);
   const path =
-    id !== null ? `/write/${category}/?postId=${id}` : `/write/${category}`;
+    id !== null
+      ? `/write/${category}/?postId=${id}&title=${title}`
+      : `/write/${category}&title=${title}`;
   return (
     <div className="w-full">
       <p className="font-semibold text-5xl">{title}</p>
