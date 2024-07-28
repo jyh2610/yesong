@@ -3,12 +3,16 @@
 import { Divider } from '@nextui-org/divider';
 import { useAuth } from '@/app/_providers/AuthProvider';
 import { FullImage, IGetPost, formatYYYYMMDD } from '@/shared';
+import { checkFileType } from '@/shared/utils/checkFileType';
 import { useGetPostById } from './api';
 import { RemoteButton } from './ui/RemoteButton';
 
 export function Detail({ id, category }: { id: string; category: string }) {
   const { isLogin } = useAuth();
   const { data: res } = useGetPostById(id);
+
+  const image = res?.files.filter(item => checkFileType(item.fileName));
+  const file = res?.files.filter(item => !checkFileType(item.fileName));
 
   if (res === undefined) return null;
   return (
@@ -30,6 +34,18 @@ export function Detail({ id, category }: { id: string; category: string }) {
       </div>
       <Divider className="mt-4" />
       <div className="bg-gray-50 gap-3">
+        {file?.map((file, index) => (
+          <a
+            key={index}
+            href={file.fileURL}
+            download
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-blue-700"
+          >
+            <p>{file.fileName}</p>
+          </a>
+        ))}
         {res.links.map((link, index) => (
           <a
             key={index}
@@ -52,7 +68,7 @@ export function Detail({ id, category }: { id: string; category: string }) {
         dangerouslySetInnerHTML={{ __html: res.content }}
       />
 
-      {res.files.map((file, index) => (
+      {image?.map((file, index) => (
         <div key={index} className="relative w-full h-[800px]">
           <FullImage src={file.fileURL} altContent="게시판 이미지" />
         </div>
