@@ -26,29 +26,32 @@ const AuthProvider = ({ children }: { children: ReactNode }) => {
   useEffect(() => {
     const token = tokenController.getAccessToken();
     const refreshToken = tokenController.getRefreshToken();
-    const checkTokens = () => {
+
+    const checkTokens = async () => {
       if (!token && refreshToken) {
-        postRefreshAuthToken(refreshToken)
-          .then(newTokens => {
-            if (newTokens) {
-              tokenController.setAccessToken(newTokens.accessToken);
-              setIsLogin(true);
-            } else {
-              setIsLogin(false);
-              tokenController.clearTokens();
-            }
-          })
-          .catch(() => {
+        try {
+          const newTokens = await postRefreshAuthToken(refreshToken);
+          if (newTokens) {
+            tokenController.setAccessToken(newTokens.accessToken);
+            setIsLogin(true);
+          } else {
             setIsLogin(false);
             tokenController.clearTokens();
-          });
+          }
+        } catch (error) {
+          setIsLogin(false);
+          tokenController.clearTokens();
+        }
       } else {
         setIsLogin(!!token);
-        tokenController.clearTokens();
       }
     };
 
-    refreshToken && checkTokens();
+    if (refreshToken) {
+      checkTokens();
+    } else {
+      tokenController.clearTokens();
+    }
   }, []);
 
   return (
