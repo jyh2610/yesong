@@ -4,11 +4,12 @@ import { Divider } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import { useGetSearchId } from '@/entities/DashBoard/api';
 import { FullImage } from '@/shared';
+import { ILink } from '../types/posts';
 import { UploadButton } from './ui/UploadButton';
 interface Props {
   title: string;
   src: string[];
-  link: string[];
+  link: ILink[];
   id: number | null;
   category: string;
 }
@@ -28,12 +29,12 @@ export function TitleWithImgLayout({ id, src, title, link, category }: Props) {
           link.map((link, index) => (
             <a
               key={index}
-              href={`https://${link}`}
+              href={`https://${link.url}`}
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-700"
             >
-              <p>{link}</p>
+              <p>{link.comment}</p>
             </a>
           ))}
       </div>

@@ -38,7 +38,7 @@ export function Dropdown({ setIsOpen }: Props) {
                 {list.map((listItem, listItemIndex) => (
                   <span
                     key={listItemIndex}
-                    className="hover:text-brand-400 mt-1"
+                    className="hover:text-brand-400 mt-1 whitespace-nowrap"
                     onClick={() => navigatePage(parentKey, listItem)}
                   >
                     {listItem}

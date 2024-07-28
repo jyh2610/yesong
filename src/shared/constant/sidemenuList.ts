@@ -10,6 +10,8 @@ export const menuItems = {
 };
 
 export const list = {
+  service_explain: '노인장기요양보험제도란',
+  care_steps: '장기요양인정 및 이용절차',
   care_info: '방문요양 서비스 내용 제공',
   price_info: '월 한도액 및 본인부담금 안내',
   notice: '공지사항',
@@ -21,4 +23,5 @@ export const list = {
   long_term_care: '요양보호안내',
   gallery: '갤러리'
 };
+
 export type ListKeys = keyof typeof list;

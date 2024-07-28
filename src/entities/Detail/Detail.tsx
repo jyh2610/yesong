@@ -33,12 +33,12 @@ export function Detail({ id }: { id: string }) {
         {res.links.map((link, index) => (
           <a
             key={index}
-            href={`https://${link}`}
+            href={`https://${link.url}`}
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-700"
           >
-            <p>{link}</p>
+            <p>{link.comment}</p>
           </a>
         ))}
       </div>

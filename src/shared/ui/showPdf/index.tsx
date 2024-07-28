@@ -1,36 +1,25 @@
-'use client';
-import { useState } from 'react';
-import { Document, Page } from 'react-pdf';
-import { pdfjs } from 'react-pdf';
-
-pdfjs.GlobalWorkerOptions.workerSrc = new URL(
-  'pdfjs-dist/build/pdf.worker.min.mjs',
-  import.meta.url
-).toString();
-
 export function ShowPDF({ url }: { url: string }) {
-  const [numPages, setNumPages] = useState<number>();
-  const [pageNumber, setPageNumber] = useState<number>(1);
-
-  function onDocumentLoadSuccess({ numPages }: { numPages: number }): void {
-    setNumPages(numPages);
-  }
-
   return (
     <div>
+      <div className="my-4">
+        <a
+          className="hover:text-blue-500"
+          href="https://www.longtermcare.or.kr/npbs/e/b/201/npeb201m01.web?menuId=npe0000000080&prevPath=/npbs/e/b/101/npeb101m01.web"
+        >
+          국민겅강보험공단 이동하기
+        </a>
+      </div>
       <iframe
+        className=" border-2"
         style={{
-          width: '200%',
+          width: '120%',
           height: '1200px',
+          border: '2px solid black',
           transform: 'scale(0.8)',
-          transformOrigin: '0 0',
-          border: 'none'
+          transformOrigin: '0 0'
         }}
-        src="https://www.longtermcare.or.kr/npbs/e/b/201/npeb201m01.web?menuId=npe0000000080&prevPath=/npbs/e/b/101/npeb101m01.web"
+        src={url}
       />
-      {/* <Document file={url} onLoadSuccess={onDocumentLoadSuccess}>
-          <Page pageNumber={pageNumber} />
-        </Document> */}
     </div>
   );
 }

@@ -25,7 +25,6 @@ export function WritePost() {
   const router = useRouter();
   const { quillRef } = useUploadContentImg();
   const [quillUploadImage, setQuillUploadImage] = useState<File[]>([]);
-
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const searchParams = useSearchParams();
@@ -82,6 +81,19 @@ export function WritePost() {
     setUploadImage(prev => [...prev, file]);
   };
 
+  const handleLinkChange = (
+    index: number,
+    field: 'url' | 'comment',
+    value: string
+  ) => {
+    setPostData(prev => ({
+      ...prev,
+      links: prev.links.map((link, i) =>
+        i === index ? { ...link, [field]: value } : link
+      )
+    }));
+  };
+
   return (
     <>
       <h1 className="font-semibold text-5xl mb-4">{title}</h1>
@@ -110,39 +122,47 @@ export function WritePost() {
           </div>
         </ListWithTitle>
         <ListWithTitle title="링크 #1">
-          <input
-            value={postData.links[0] || ''}
-            onChange={e =>
-              setPostData(prev => ({
-                ...prev,
-                links: [e.target.value, prev.links[1] || '']
-              }))
-            }
-            className="bg-gray-100 w-full p-1"
-            type="url"
-            placeholder="링크를 입력하세요."
-          />
+          <div>
+            <input
+              value={postData.links[0]?.comment || ''}
+              onChange={e => handleLinkChange(0, 'comment', e.target.value)}
+              className="bg-gray-100 w-full p-1"
+              type="text"
+              placeholder="코멘트를 입력하세요."
+            />
+            <input
+              value={postData.links[0]?.url || ''}
+              onChange={e => handleLinkChange(0, 'url', e.target.value)}
+              className="bg-gray-100 w-full p-1 mt-2"
+              type="url"
+              placeholder="링크를 입력하세요."
+            />
+          </div>
         </ListWithTitle>
         <ListWithTitle title="링크 #2">
-          <input
-            value={postData.links[1] || ''}
-            onChange={e =>
-              setPostData(prev => ({
-                ...prev,
-                links: [prev.links[0] || '', e.target.value]
-              }))
-            }
-            className="bg-gray-100 w-full p-1"
-            type="url"
-            placeholder="링크를 입력하세요."
-          />
+          <div>
+            <input
+              value={postData.links[1]?.comment || ''}
+              onChange={e => handleLinkChange(1, 'comment', e.target.value)}
+              className="bg-gray-100 w-full p-1"
+              type="text"
+              placeholder="코멘트를 입력하세요."
+            />
+            <input
+              value={postData.links[1]?.url || ''}
+              onChange={e => handleLinkChange(1, 'url', e.target.value)}
+              className="bg-gray-100 w-full p-1 mt-2"
+              type="url"
+              placeholder="링크를 입력하세요."
+            />
+          </div>
         </ListWithTitle>
         <ListWithTitle title="파일">
           <div>
             <input
               ref={fileInputRef}
               type="file"
-              accept="image/*"
+              accept="*"
               onChange={e => handleFileChange(e.target.files?.[0] as File)}
               placeholder="파일을 선택하세요."
               style={{ display: 'none' }}

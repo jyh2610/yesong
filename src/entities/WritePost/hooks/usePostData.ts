@@ -6,11 +6,14 @@ import { getPostById } from '@/entities/Detail/api';
 import { postDashBoard, usePostDashboard } from '../api';
 import { PostState } from '../type';
 
-export const initialData: PostState = {
+export const initialData = {
   title: '',
   content: '',
   category: '',
-  links: ['', ''],
+  links: [
+    { url: '', comment: '' },
+    { url: '', comment: '' }
+  ],
   files: []
 };
 

@@ -1,4 +1,4 @@
-import { IFile } from '@/shared/types/posts';
+import { IFile, ILink } from '@/shared/types/posts';
 
 export interface IPostData {
   title: string;
@@ -12,7 +12,7 @@ export interface PostState {
   id?: string;
   title: string;
   content: string;
-  links: string[];
+  links: ILink[];
   category: string;
   files: IFile[];
 }

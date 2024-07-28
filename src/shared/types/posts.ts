@@ -4,12 +4,17 @@ export interface IFile {
   fileURL: string;
 }
 
+export interface ILink {
+  url: string;
+  comment: string;
+}
+
 export interface IGetPost {
   id: number;
   title: string;
   content: string;
   category: string;
-  links: string[];
+  links: ILink[];
   files: IFile[];
   author: string;
   createdAt: string;
