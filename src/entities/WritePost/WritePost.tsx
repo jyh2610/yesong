@@ -3,6 +3,7 @@
 import { Button } from '@nextui-org/react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useRef, useState } from 'react';
+import { useToast } from '@/app/_providers/ToastProvider';
 import { replaceHTML } from '@/shared';
 import { extractSrc } from '@/shared/utils/replaceHTML';
 import { uploadEditorImage } from './api';
@@ -23,10 +24,9 @@ export function WritePost() {
     removeUploadImage
   } = usePostData();
   const router = useRouter();
-  const { quillRef } = useUploadContentImg();
   const [quillUploadImage, setQuillUploadImage] = useState<File[]>([]);
   const fileInputRef = useRef<HTMLInputElement>(null);
-
+  const { showToast } = useToast();
   const searchParams = useSearchParams();
   const title = searchParams.get('title') || '';
 
@@ -60,16 +60,18 @@ export function WritePost() {
 
   const dashBoardPostHandler = async () => {
     try {
-      const content = await postQuillImage();
-      const finalContent = extractSrc(content || '')
-        ? content
-        : postData.content;
+      if (postData.title.length > 0) {
+        const content = await postQuillImage();
+        const finalContent = extractSrc(content || '')
+          ? content
+          : postData.content;
 
-      console.log(content);
-
-      await postDashBoardHandler(finalContent || '');
+        await postDashBoardHandler(finalContent || '');
+      } else {
+        showToast({ type: 'fail', message: '제목을 입력하세요!' });
+      }
     } catch (error) {
-      console.error('Error posting dashboard:', error);
+      showToast({ type: 'fail', message: '등록 실패했습니다.' });
     }
   };
 
