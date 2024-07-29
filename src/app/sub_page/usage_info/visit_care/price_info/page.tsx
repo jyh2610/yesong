@@ -22,6 +22,7 @@ function PriceInfo() {
       src={urlArr}
       id={72}
       category={'GUIDE_HOMECARE'}
+      link={[]}
     />
   );
 }
