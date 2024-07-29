@@ -1,6 +1,8 @@
 'use client';
 
 import { Divider } from '@nextui-org/divider';
+import { FaFileAlt } from 'react-icons/fa';
+import { IoIosLink } from 'react-icons/io';
 import { useAuth } from '@/app/_providers/AuthProvider';
 import { FullImage, IGetPost, formatYYYYMMDD } from '@/shared';
 import { checkFileType } from '@/shared/utils/checkFileType';
@@ -36,28 +38,35 @@ export function Detail({ id, category }: { id: string; category: string }) {
       <div className="bg-gray-50 gap-3">
         {file.length > 0 &&
           file?.map((file, index) => (
-            <a
-              key={index}
-              href={file.fileURL}
-              download
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-blue-700"
-            >
-              <p>{file.fileName}</p>
-            </a>
+            <div key={index} className="flex items-center gap-2">
+              <FaFileAlt />
+              <a
+                href={file.fileURL}
+                download
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-700"
+              >
+                <p>{file.fileName}</p>
+              </a>
+            </div>
           ))}
-        {res.links.map((link, index) => (
-          <a
-            key={index}
-            href={`https://${link.url}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-blue-700"
-          >
-            <p>{link.comment}</p>
-          </a>
-        ))}
+        {res.links.map(
+          (link, index) =>
+            link.comment.length > 0 && (
+              <div key={index} className="flex items-center gap-2">
+                <IoIosLink />
+                <a
+                  href={`https://${link.url}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-blue-700"
+                >
+                  <p>{link.comment}</p>
+                </a>
+              </div>
+            )
+        )}
       </div>
       <Divider className="" />
 

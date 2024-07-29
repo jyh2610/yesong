@@ -2,6 +2,8 @@
 
 import { Divider } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
+import { FaFileAlt } from 'react-icons/fa';
+import { IoIosLink } from 'react-icons/io';
 import { useGetSearchId } from '@/entities/DashBoard/api';
 import { FullImage } from '@/shared';
 import { ILink } from '../types/posts';
@@ -32,28 +34,32 @@ export function TitleWithImgLayout({ id, src, title, link, category }: Props) {
       <Divider className="mt-5" />
       <div className="bg-gray-50 gap-3">
         {file?.map((file, index) => (
-          <a
-            key={index}
-            href={file.fileURL}
-            download
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-blue-700"
-          >
-            <p>{file.fileName}</p>
-          </a>
-        ))}
-        {link &&
-          link.map((link, index) => (
+          <div key={index} className="flex items-center gap-2">
+            <FaFileAlt />
             <a
-              key={index}
-              href={`https://${link.url}`}
+              href={file.fileURL}
+              download
               target="_blank"
               rel="noopener noreferrer"
               className="hover:text-blue-700"
             >
-              <p>{link.comment}</p>
+              <p>{file.fileName}</p>
             </a>
+          </div>
+        ))}
+        {link.length > 0 &&
+          link.map((link, index) => (
+            <div key={index} className="flex items-center gap-2">
+              <IoIosLink />
+              <a
+                href={`https://${link.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-blue-700"
+              >
+                <p>{link.comment}</p>
+              </a>
+            </div>
           ))}
       </div>
 
