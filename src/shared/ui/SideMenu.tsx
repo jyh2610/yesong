@@ -54,7 +54,7 @@ export function SideMenu() {
 
   return (
     <div className="w-1/3 font-medium text-2x text-gray-700 ">
-      <p className="pb-3 border-b-2 border-brand-200 text-gray-800">
+      <p className="pb-3 text-2xl font-semibold border-b-2 border-brand-200 text-gray-800">
         {currentMenu?.[0]}
       </p>
       {menuList.map((menu, index) => {
@@ -62,7 +62,7 @@ export function SideMenu() {
         return (
           <div key={index}>
             <p
-              className={`py-2 cursor-pointer ${menu === list[activeMenuKey as ListKeys] ? 'text-brand-600' : 'text-font-gray'}`}
+              className={`py-2 text-[20px] font-semibold cursor-pointer ${menu === list[activeMenuKey as ListKeys] ? 'text-brand-600' : 'text-font-gray'}`}
               onClick={() => {
                 router.push(generatePath(menu));
               }}
@@ -90,9 +90,9 @@ const Info = () => {
   return (
     <div className="p-5 bg-brand border border-brand-300 rounded-2xl text-gray-700 mt-14">
       <div className="text-center">
-        <p className="text-gray-800">고객센터</p>
-        <p className="mt-2">언제든지 전화주시면 정성껏</p>
-        <p>답변드리겠습니다.</p>
+        <p className="text-gray-800 font-semibold text-2xl">고객센터</p>
+        <p className="mt-2">언제든지 전화주시면</p>
+        <p>정성껏 답변드리겠습니다.</p>
       </div>
       <div className="flex gap-2 mt-5">
         <IoMdCall size={24} color="#FA98D3" />
@@ -100,7 +100,7 @@ const Info = () => {
       </div>
       <div className="flex gap-2 mt-3">
         <FaLocationDot size={24} color="#FA98D3" />
-        <p>{companyInfo.address}</p>
+        <p className=" whitespace-nowrap">{companyInfo.address}</p>
       </div>
     </div>
   );

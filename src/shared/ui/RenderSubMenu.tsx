@@ -38,7 +38,7 @@ export const RenderSubMenu = ({
           return (
             <p
               key={subMenu}
-              className={`py-2 cursor-pointer ${subMenu === list[activeMenuKey as ListKeys] ? 'text-brand-600' : 'text-font-gray'} ${lastSegment === activeMenuKey ? 'text-brand-600' : ''}`} // 마지막 세그먼트가 activeMenuKey와 일치하는 경우 클래스를 추가합니다.
+              className={`py-2 font-semibold text-[18px] cursor-pointer ${subMenu === list[activeMenuKey as ListKeys] ? 'text-brand-600' : 'text-font-gray'} ${lastSegment === activeMenuKey ? 'text-brand-600' : ''}`} // 마지막 세그먼트가 activeMenuKey와 일치하는 경우 클래스를 추가합니다.
               onClick={() => router.push(fullPath)}
             >
               {subMenu}

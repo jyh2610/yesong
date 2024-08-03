@@ -14,7 +14,7 @@ export function Header() {
         <div className="flex justify-between items-end pt-2">
           <Link href={'/'}>
             <div className="w-[300px] h-14 relative m-auto">
-              <FullImage src="/assets/Logo.png" altContent="메인로고" />
+              <FullImage src="/assets/newLogo.jpeg" altContent="메인로고" />
             </div>
           </Link>
           <div className="w-2/3 flex flex-col justify-end">

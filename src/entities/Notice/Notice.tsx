@@ -15,7 +15,7 @@ export function Notice() {
         <NoticeList notice={data} />
         <div className="w-2/5 h-80 my-auto flex justify-center items-center rounded-[20px] border p-1">
           <div className="relative  w-96 h-60">
-            <FullImage src={'/assets/numberImg.png'} altContent={''} />
+            <FullImage src={'/assets/numberCard.png'} altContent={''} />
           </div>
         </div>
       </div>

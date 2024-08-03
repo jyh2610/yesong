@@ -2,9 +2,9 @@ import { DropList } from './type';
 
 export const dropList: DropList = {
   센터소개: ['인사말', '오시는길'],
-  요양보험안내: ['노인장기요양보험제도란', '장기요양인정 및 이용절차'],
+  노인장기요양보험: ['노인장기요양보험제도란?', '장기요양인정 및 이용절차'],
   이용안내: ['방문요양'],
-  커뮤니티: ['공지사항'],
+  공지사항: ['공지사항'],
   자료실: ['건강정보', '교육자료'],
   갤러리: ['갤러리']
 };
@@ -21,10 +21,10 @@ export const pathMapping: { [key: string]: IPathMapping } = {
       오시는길: '/way_to_come'
     }
   },
-  요양보험안내: {
+  노인장기요양보험: {
     path: '/long_term_care',
     children: {
-      노인장기요양보험제도란: '/service_explain',
+      '노인장기요양보험제도란?': '/service_explain',
       '장기요양인정 및 이용절차': '/care_steps'
     }
   },

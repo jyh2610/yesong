@@ -25,7 +25,10 @@ export function Card({ card }: { card: string[] }) {
       </div>
       <div className="text-center">
         <p className="mb-4 font-normal text-2xl text-gray-900">{card[1]}</p>
-        <div className="text-lg leading-[25px] text-gray-800">{card[2]}</div>
+        <div
+          className="text-lg text-center leading-[25px] text-gray-800"
+          dangerouslySetInnerHTML={{ __html: card[2].replace(/\n/g, '<br />') }}
+        />
       </div>
     </div>
   );
