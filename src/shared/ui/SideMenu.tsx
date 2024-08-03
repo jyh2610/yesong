@@ -100,7 +100,10 @@ const Info = () => {
       </div>
       <div className="flex gap-2 mt-3">
         <FaLocationDot size={24} color="#FA98D3" />
-        <p className=" whitespace-nowrap">{companyInfo.address}</p>
+        <div>
+          <p className="">경기도 성남시 수정구 산성대로 331</p>
+          <p>한신프라자 1606호</p>
+        </div>
       </div>
     </div>
   );
