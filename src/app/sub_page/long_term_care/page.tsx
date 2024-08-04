@@ -3,6 +3,7 @@ import { TitleWithImgLayout } from '@/shared';
 
 async function LongTermCare() {
   const res = await getPosts({ page: 0, category: 'INSURANCE_INFO' });
+
   const urlArr = (res.content[0] &&
     res.content[0].files.map(file => file.fileURL)) || [
     '/assets/long_term.jpeg',
