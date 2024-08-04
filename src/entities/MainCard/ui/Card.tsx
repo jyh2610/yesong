@@ -15,7 +15,7 @@ export function Card({ card }: { card: string[] }) {
         border: '2px solid',
         borderColor: isHovered ? card[4] : 'transparent'
       }}
-      className="w-[450px] flex flex-col justify-center items-center gap-5 rounded-3xl px-2 py-8 border-2 transition-all hover:cursor-pointer"
+      className="w-4/12 flex flex-col justify-center items-center gap-5 rounded-3xl px-2 py-8 border-2 transition-all hover:cursor-pointer"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       onClick={() => route.push(card[5])}
@@ -26,7 +26,7 @@ export function Card({ card }: { card: string[] }) {
       <div className="text-center">
         <p className="mb-4 font-normal text-2xl text-gray-900">{card[1]}</p>
         <div
-          className="text-lg text-center leading-[25px] text-gray-800"
+          className="text-base text-center leading-[25px] text-gray-800"
           dangerouslySetInnerHTML={{ __html: card[2].replace(/\n/g, '<br />') }}
         />
       </div>
