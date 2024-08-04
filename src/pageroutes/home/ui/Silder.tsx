@@ -5,8 +5,8 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 import { FullImage } from '@/shared';
 import 'swiper/css/effect-fade';
 const bannerImg = [
-  '/assets/Banner.png',
-  '/assets/Banner2.jpg',
+  '/assets/Banner.jpeg',
+  '/assets/Banner2.jpeg',
   '/assets/Banner3.jpeg'
 ];
 

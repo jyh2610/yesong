@@ -22,7 +22,7 @@ function PriceInfo() {
       src={urlArr}
       id={id}
       category={'GUIDE_HOMECARE'}
-      link={[]}
+      link={res?.content[0].links || []}
     />
   );
 }
