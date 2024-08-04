@@ -15,7 +15,7 @@ async function Greeting() {
           src={
             res.content.length > 0
               ? res.content[0].files[0].fileName
-              : '/assets/Greeting.jpg'
+              : '/assets/greeting.jpeg'
           }
           altContent={'인사말'}
         />
