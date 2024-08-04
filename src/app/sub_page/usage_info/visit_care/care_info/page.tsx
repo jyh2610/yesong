@@ -17,7 +17,7 @@ function ProvideServiceInfo() {
       : ['/assets/long_term.jpeg', '/assets/long_term3.jpeg'];
   return (
     <TitleWithImgLayout
-      id={73}
+      id={id}
       title={'방문요양 서비스 제공내용'}
       src={urlArr}
       category="GUIDE_HOMECARE"
