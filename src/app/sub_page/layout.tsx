@@ -13,7 +13,7 @@ function layout({ children }: { children: ReactNode }) {
           alt={'subBanner'}
           fill={true}
           sizes="100%, 100%"
-          className="object-cover overflow-hidden"
+          className="object-contain overflow-hidden"
           priority
         />
       </div>

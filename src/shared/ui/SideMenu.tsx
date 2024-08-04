@@ -64,7 +64,7 @@ export function SideMenu() {
             <p
               className={`py-2 text-[20px] font-semibold cursor-pointer ${menu === list[activeMenuKey as ListKeys] ? 'text-brand-600' : 'text-font-gray'}`}
               onClick={() => {
-                router.push(generatePath(menu));
+                !child && router.push(generatePath(menu));
               }}
             >
               {menu}

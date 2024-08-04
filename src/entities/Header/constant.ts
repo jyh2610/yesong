@@ -40,7 +40,7 @@ export const pathMapping: { [key: string]: IPathMapping } = {
       }
     }
   },
-  커뮤니티: {
+  공지사항: {
     path: '/community',
     children: {
       공지사항: '/notice'
