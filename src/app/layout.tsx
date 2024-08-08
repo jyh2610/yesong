@@ -48,10 +48,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="ko">
-      <meta
+      {/* <meta
         name="naver-site-verification"
         content="286b1d4aa16d8e408601495fc52c4ae6668d0575"
-      />
+      /> */}
       <Script
         type="text/javascript"
         src={`https://dapi.kakao.com/v2/maps/sdk.js?appkey=${process.env.NEXT_PUBLIC_KAKAO_APP_KEY}&autoload=false`}
