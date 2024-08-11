@@ -12,13 +12,11 @@ export function Dropdown({ setIsOpen }: Props) {
   const router = useRouter();
 
   const navigatePage = (parentKey: string, childKey: string) => {
-    setIsOpen(false);
     const parentPath = pathMapping[parentKey]?.path;
     const child = pathMapping[parentKey]?.children?.[childKey];
-
     const fullPath = getFullPath(parentPath, child);
-
     router.push(fullPath);
+    setIsOpen(false);
   };
 
   return (

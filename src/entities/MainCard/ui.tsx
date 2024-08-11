@@ -30,7 +30,7 @@ const cardData = [
 export function MainCard() {
   return (
     <div className="mt-32">
-      <div className="w-[90%] flex justify-between items-center mx-auto gap-1">
+      <div className="w-[100%] px-3 flex justify-between items-center mx-auto gap-1">
         {cardData.map((card, index) => (
           <Card key={index} card={card} />
         ))}
