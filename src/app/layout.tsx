@@ -17,7 +17,7 @@ const pretendard = localFont({
 export const metadata = {
   title: '예송재가 노인복지센터 | 경기도 성남시 수정구',
   icons: {
-    icon: '/tabLogo.jpeg'
+    icon: '/assets/tabLogo.jpeg'
   },
   openGraph: {
     type: 'website',
@@ -27,7 +27,7 @@ export const metadata = {
       '예송재가 노인복지센터는 경기도 성남시 수정구에 위치한 최고의 노인요양센터입니다. 노인복지서비스, 요양병원, 요양원, 실버타운, 노인 돌봄 서비스를 제공합니다.',
     images: [
       {
-        url: '/tabLogo.jpeg',
+        url: '/assets/tabLogo.jpeg',
         width: 800,
         height: 600,
         alt: '예송재가 노인복지센터'
